@@ -38,7 +38,7 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
   oraclehr: {
-    adapter: 'oracle-sp',
+    adapter: 'sails-oracle-sp',
     user: 'hr',
     password: 'welcome',
     package: 'HR',
