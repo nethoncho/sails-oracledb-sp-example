@@ -23,7 +23,8 @@
 -- .../sails-oracledb-sp-example/api/models directory.
 --
 -- Sail's models names are conceptionally table names, but
--- Sails-oracle-sp has repurposed model names for stored procedure names.
+-- Sails-oracle-sp has repurposed model names as stored procedure names.
+--
 -- This example can only modify the employee table.  Adding the means
 -- to modify, say, the department table requires a "department" model and
 -- adding procedures named department_c(), department_r(),
