@@ -1,2 +1,6 @@
 # sails-oracledb-sp-example
-An example sails application using oracle stored procedures
+Example sails project using oracledb stored procedures
+
+
+## Setup
+edit config/connections.js with your database details
