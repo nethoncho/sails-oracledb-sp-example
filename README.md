@@ -12,7 +12,7 @@ $ npm install
 
 ## Sails Configuration
 
-Edit the oraclehr adapter in the config/connections.js file to match your needs
+Edit the oracle hr adapter in the config/connections.js file to match your needs
 
 ```javascript
 module.exports.connections = {
@@ -27,7 +27,7 @@ module.exports.connections = {
 };
 ```
 
-## apply the database changes in db/
+## Apply the database changes in db/
 
 ## Run the application
 
