@@ -1,5 +1,5 @@
 --
--- bug1.plb
+-- hr.plb
 --
 CREATE OR REPLACE
 PACKAGE BODY hr_child

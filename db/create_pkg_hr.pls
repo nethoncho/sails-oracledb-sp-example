@@ -1,5 +1,5 @@
 --
--- bug1.pls
+-- hr.pls
 --
 
 CREATE OR REPLACE
