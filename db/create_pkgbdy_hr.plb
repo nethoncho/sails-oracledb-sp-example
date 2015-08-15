@@ -45,7 +45,7 @@ IS
       END;
       --
    END;
-
+   --
    -----------------------------------------------------------------------------------
    --
    -- Read all employee details
@@ -83,6 +83,22 @@ IS
       --
    END;
    --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified employee's email
+   --
+   PROCEDURE employees_u(
+                           p_employee_id  IN       employees.employee_id%TYPE,
+                           p_email        IN       VARCHAR2
+                        )
+   IS
+   BEGIN
+      hr_child.employees_u(
+                              p_employee_id,
+                              p_email
+                          );
+   END;
    --
    -----------------------------------------------------------------------------------
    --

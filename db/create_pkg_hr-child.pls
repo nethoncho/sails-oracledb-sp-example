@@ -44,6 +44,12 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
+   -- update a specified employee's email
+   --
+   PROCEDURE employees_u(
+                           p_employee_id  IN       employees.employee_id%TYPE,
+                           p_email        IN       VARCHAR2
+                        );
    --
    -----------------------------------------------------------------------------------
    --
