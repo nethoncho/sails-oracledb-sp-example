@@ -35,7 +35,7 @@ module.exports.connections = {
 Apply the stored procedures to the HR schema in db/
 
 ```bash
-cd db
+$ cd db
 ```
 
 The order is important
@@ -48,7 +48,7 @@ sqlplus "hr/welcome@localhost/xe" < create_pkgbdy_hr.plb
 ```
 
 ```bash
-cd ..
+$ cd ..
 ```
 
 ## Run the application
