@@ -28,6 +28,16 @@ module.exports.connections = {
 ```
 
 ## Apply the database changes in db/
+cd db
+
+Apply the following files in the order shown:
+```
+create_pkg_hr-child.pls
+create_pkgbdy_hr-child.plb
+create_pkg_hr.pls
+create_pkgbdy_hr.plb
+```
+
 
 ## Run the application
 
