@@ -1,6 +1,35 @@
 --
 -- hr.pls
 --
+-- This package is the called by the Sails-oracle-sp adapter.
+-- In this example this package is acting as the "middleware"
+-- between Sails-oracle-sp and the pre-existing
+-- "legacy" stored procedures.
+--
+-- Sails-oracle-sp depends on the procedures in this package to follow a
+-- particular naming pattern: "model-name"_"CRUD indicator".
+--
+-- The "CRUD indicator" is a letter following the last underscore in
+-- the procedure's name.  In this package the various procedures
+-- that affect the employee table are:
+--
+--    employees_c()  -- create an employee
+--    employees_r()  -- read employee details
+--    employees_u()  -- update  employee details
+--    employees_d()  -- destroy an employee
+--
+-- The "model-name" part of the procedure's name is specified in
+-- one of Sail's MVC models, which are located in the
+-- .../sails-oracledb-sp-example/api/models directory.
+--
+-- Sail's models names are conceptionally table names, but
+-- Sails-oracle-sp has repurposed model names for stored procedure names.
+-- This example can only modify the employee table.  Adding the means
+-- to modify, say, the department table requires a "department" model and
+-- adding procedures named department_c(), department_r(),
+-- department_u() and department_d().
+--
+--
 
 CREATE OR REPLACE
 PACKAGE hr
