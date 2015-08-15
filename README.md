@@ -28,14 +28,18 @@ module.exports.connections = {
 ```
 
 ## Apply the database changes in db/
+
+```bash
 cd db
+```
 
 Apply the following files in the order shown:
-```
-create_pkg_hr-child.pls
-create_pkgbdy_hr-child.plb
-create_pkg_hr.pls
-create_pkgbdy_hr.plb
+
+```bash
+sqlplus "hr/welcome@localhost/xe" < create_pkg_hr-child.pls
+sqlplus "hr/welcome@localhost/xe" < create_pkgbdy_hr-child.plb
+sqlplus "hr/welcome@localhost/xe" < create_pkg_hr.pls
+sqlplus "hr/welcome@localhost/xe" < create_pkgbdy_hr.plb
 ```
 
 
