@@ -30,6 +30,12 @@
 -- adding procedures named department_c(), department_r(),
 -- department_u() and department_d().
 --
+-- This naming pattern enables Sails-oracle-sp to automatically generate
+-- the stored procedure calling syntax for all of these stored procedures.
+--
+-- Sails-oracle-sp uses "named notation" when invoking stored procedures.
+-- Using named notation relieves Sails-oracle-sp placing parametes in
+-- any particular order.
 --
 
 CREATE OR REPLACE
