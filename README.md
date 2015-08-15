@@ -7,7 +7,7 @@ Example sails project using oracledb stored procedures
 ```bash
 $ git clone https://github.com/nethoncho/sails-oracledb-sp-example.git
 $ cd sails-oracledb-sp-example
-# npm install
+$ npm install
 ```
 
 ## Sails Configuration
