@@ -1,5 +1,10 @@
 # sails-oracledb-sp-example
-Example sails project using oracledb stored procedures
+
+## About
+Example sails project using the [sails-oracledb-sp](https://github.com/Buto/sails-oracledb-sp) adapter
+
+The current version exposes the Oracle HR Employee table via a REST API
+Future versions will include a working web UI
 
 
 ## Installation
@@ -10,7 +15,7 @@ $ cd sails-oracledb-sp-example
 $ npm install
 ```
 
-## Sails Configuration
+## Configuration
 
 Edit the oraclehr adapter in the config/connections.js file to match your needs
 
@@ -27,13 +32,13 @@ module.exports.connections = {
 };
 ```
 
-## Apply the database changes in db/
+Apply the stored procedures to the HR schema in db/
 
 ```bash
 cd db
 ```
 
-Apply the following files in the order shown:
+The order is important
 
 ```bash
 sqlplus "hr/welcome@localhost/xe" < create_pkg_hr-child.pls
@@ -42,6 +47,9 @@ sqlplus "hr/welcome@localhost/xe" < create_pkg_hr.pls
 sqlplus "hr/welcome@localhost/xe" < create_pkgbdy_hr.plb
 ```
 
+```bash
+cd ..
+```
 
 ## Run the application
 
@@ -51,7 +59,7 @@ $ sails lift
 
 Point your browser to http://127.0.0.1:1337/Employees
 
-## Routes
+### Routes
 
 ```
 GET    /Employees
