@@ -9,8 +9,8 @@ module.exports = {
   tableName: 'EMPLOYEES',
   schema: true,
   connection: 'oraclehr',
-  autoCreatedAt: 'false',
-  autoUpdatedAt: 'false',
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
 
   attributes: {
     EMPLOYEE_ID: {
