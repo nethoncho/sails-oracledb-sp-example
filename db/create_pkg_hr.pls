@@ -1,18 +1,25 @@
 --
 -- hr.pls
 --
--- This package is the called by the Sails-oracle-sp adapter.
--- In this example this package is acting as the "glue"
--- between Sails-oracle-sp and the pre-existing
--- "legacy" stored procedures.  Put another way, its purpose
--- is to present an interface to legacy stored procedures that
--- Sails-oracle-sp can use.
+-- This package is called by the Sails-oracle-sp adapter.
+--
+-- This package is an example of the facade design pattern,
+-- which wraps a complicated subsystem with a simpler interface.
+-- This package provides Sails-oracle-sp with stored procedures that
+-- have predictable names.  These stored procedures provide
+-- Sails-oracle-sp with an interface to legacy stored procedures with
+-- arbitrary names and arbitrary parameters.  This enables
+-- such legacy stored procedures to be used by Sails-oracle-sp without
+-- modification.
 --
 -- Interfacing such legacy stored procedures to Sails without
 -- Sails-oracle-sp commits the developer to writting custom
--- REST API code for each stored procedure to be called.
--- In contrast, Sails-oracle-sp automatically generates the ca
+-- Sail's adapter code for each stored procedure to be called.
+-- In contrast, Sails-oracle-sp programmatically generates the
+-- Sail's adapter code for each stored procedure to be called.
 --
+-- This "glue" package enables legacy stored procedures to be
+-- used by Sails-oracle-sp without modification
 -- Sails-oracle-sp depends on the procedures in this package to follow a
 -- particular naming pattern: "model-name"_"CRUD indicator".
 --
