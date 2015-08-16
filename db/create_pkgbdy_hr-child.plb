@@ -9,7 +9,7 @@ IS
    --
    -- create an employee
    --
-   PROCEDURE employees_c(
+   PROCEDURE create_emp(
                            p_FIRST_NAME      IN VARCHAR2,
                            p_LAST_NAME       IN VARCHAR2,
                            p_EMAIL           IN VARCHAR2,
@@ -57,10 +57,10 @@ IS
       --
      COMMIT WORK;
      --
-     employees_r(
-                  p_employee_id  => v_EMPLOYEE_ID,
-                   p_details     => p_details
-                );
+     get_employee_details(
+                            p_employee_id  => v_EMPLOYEE_ID,
+                            p_details      => p_details
+                         );
      --
      --
    END;
@@ -69,24 +69,14 @@ IS
    --
    -- Read all employee details
    --
-   PROCEDURE employees_r(
-                             p_details    IN OUT  empl_details_refcur_t
-                          )
+   PROCEDURE get_all_emp_details(
+                                      p_details    IN OUT  empl_details_refcur_t
+                                   )
    IS
    BEGIN
       --
       OPEN p_details FOR
-         SELECT   EMPLOYEE_ID         AS EMPLOYEE_ID,
-                  FIRST_NAME          AS FIRST_NAME,
-                  LAST_NAME           AS LAST_NAME,
-                  EMAIL               AS EMAIL,
-                  PHONE_NUMBER        AS PHONE_NUMBER,
-                  SYSDATE             AS HIRE_DATE,
-                  JOB_ID              AS JOB_ID,
-                  SALARY              AS SALARY,
-                  COMMISSION_PCT      AS COMMISSION_PCT,
-                  MANAGER_ID          AS MANAGER_ID,
-                  DEPARTMENT_ID       AS DEPARTMENT_ID
+         SELECT   *
          FROM   employees;
       --
    END;
@@ -96,10 +86,10 @@ IS
    --
    -- Read a specified employee's details
    --
-   PROCEDURE employees_r(
-                             p_employee_id      IN      employees.employee_id%TYPE,
-                             p_details          IN OUT  empl_details_refcur_t
-                          )
+   PROCEDURE get_employee_details(
+                                      p_employee_id      IN      employees.employee_id%TYPE,
+                                      p_details          IN OUT  empl_details_refcur_t
+                                   )
    IS
    BEGIN
       --
@@ -115,10 +105,10 @@ IS
    --
    -- update a specified employee's email
    --
-   PROCEDURE employees_u(
-                           p_employee_id  IN       employees.employee_id%TYPE,
-                           p_email        IN       VARCHAR2
-                        )
+   PROCEDURE update_email_addr(
+                                 p_employee_id  IN       employees.employee_id%TYPE,
+                                 p_email        IN       VARCHAR2
+                              )
    IS
    BEGIN
       --
@@ -134,7 +124,7 @@ IS
    --
    -- destroy a specified employee
    --
-   PROCEDURE employees_d(
+   PROCEDURE delete_emp(
                              p_employee_id      IN      employees.employee_id%TYPE
                           )
    IS

@@ -1,6 +1,12 @@
 --
 -- hr.pls
 --
+-- In this example this package represents "legacy" stored procedures.
+-- Conceptually these stored procedures are pretending to be
+-- existing code that is in production and is otherwise working
+-- fine, except its not being designed to support being called via
+-- REST APIs.
+--
 
 CREATE OR REPLACE
 PACKAGE hr_child
@@ -11,7 +17,7 @@ IS
    --
    -- create an employee
    --
-   PROCEDURE employees_c(
+   PROCEDURE create_emp(
                            p_FIRST_NAME      IN VARCHAR2,
                            p_LAST_NAME       IN VARCHAR2,
                            p_EMAIL           IN VARCHAR2,
@@ -28,34 +34,34 @@ IS
    --
    -- Read all employees' details
    --
-   PROCEDURE employees_r(
-                             p_details    IN OUT  empl_details_refcur_t
-                          );
+   PROCEDURE get_all_emp_details(
+                                   p_details    IN OUT  empl_details_refcur_t
+                                );
    --
    --
    -----------------------------------------------------------------------------------
    --
    -- Read a specified employee's details
    --
-   PROCEDURE employees_r(
-                             p_employee_id      IN      employees.employee_id%TYPE,
-                             p_details          IN OUT  empl_details_refcur_t
-                          );
+   PROCEDURE get_employee_details(
+                                      p_employee_id      IN      employees.employee_id%TYPE,
+                                      p_details          IN OUT  empl_details_refcur_t
+                                   );
    --
    -----------------------------------------------------------------------------------
    --
    -- update a specified employee's email
    --
-   PROCEDURE employees_u(
-                           p_employee_id  IN       employees.employee_id%TYPE,
-                           p_email        IN       VARCHAR2
-                        );
+   PROCEDURE update_email_addr(
+                                 p_employee_id  IN       employees.employee_id%TYPE,
+                                 p_email        IN       VARCHAR2
+                              );
    --
    -----------------------------------------------------------------------------------
    --
    -- destroy a specified employee
    --
-   PROCEDURE employees_d(
+   PROCEDURE delete_emp(
                              p_employee_id      IN      employees.employee_id%TYPE
                           );
 END;

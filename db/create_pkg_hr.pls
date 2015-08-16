@@ -2,9 +2,16 @@
 -- hr.pls
 --
 -- This package is the called by the Sails-oracle-sp adapter.
--- In this example this package is acting as the "middleware"
+-- In this example this package is acting as the "glue"
 -- between Sails-oracle-sp and the pre-existing
--- "legacy" stored procedures.
+-- "legacy" stored procedures.  Put another way, its purpose
+-- is to present an interface to legacy stored procedures that
+-- Sails-oracle-sp can use.
+--
+-- Interfacing such legacy stored procedures to Sails without
+-- Sails-oracle-sp commits the developer to writting custom
+-- REST API code for each stored procedure to be called.
+-- In contrast, Sails-oracle-sp automatically generates the ca
 --
 -- Sails-oracle-sp depends on the procedures in this package to follow a
 -- particular naming pattern: "model-name"_"CRUD indicator".
