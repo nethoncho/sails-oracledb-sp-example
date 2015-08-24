@@ -64,6 +64,15 @@ IS
                                  p_email        IN       VARCHAR2
                               );
    --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- transfer employee to another department
+   --
+   PROCEDURE xver_employees(
+                                 p_employee_id     IN       employees.employee_id%TYPE,
+                                 p_department_id   IN       employees.department_id%TYPE
+                             );
    -----------------------------------------------------------------------------------
    --
    -- destroy a specified employee

@@ -104,7 +104,7 @@ IS
                              p_department_id    IN      departments.department_id%TYPE,
                              p_details          IN OUT  hr_child.empl_details_refcur_t
                           );
-
+   --
    -----------------------------------------------------------------------------------
    --
    -- update a specified employee's email
@@ -112,6 +112,16 @@ IS
    PROCEDURE employees_u(
                            p_employee_id  IN       employees.employee_id%TYPE,
                            p_email        IN       VARCHAR2
+                        );
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- transfer employee to another department
+   --
+   PROCEDURE employees_u(
+                           p_employee_id     IN       employees.employee_id%TYPE,
+                           p_department_id   IN       employees.department_id%TYPE
                         );
    --
    -----------------------------------------------------------------------------------

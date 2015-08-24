@@ -123,6 +123,24 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
+   -- transfer employee to another department
+   --
+   PROCEDURE employees_u(
+                           p_employee_id     IN       employees.employee_id%TYPE,
+                           p_department_id   IN       employees.department_id%TYPE
+                        )
+   IS
+   BEGIN
+      hr_child.xver_employees(
+                                    p_employee_id,
+                                    p_department_id
+                                );
+      --
+   END;
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
    -- destroy a specified employee
    --
    PROCEDURE employees_d(

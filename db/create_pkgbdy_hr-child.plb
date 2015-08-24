@@ -122,6 +122,25 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
+   -- transfer employee to another department
+   --
+   PROCEDURE xver_employees(
+                                 p_employee_id     IN       employees.employee_id%TYPE,
+                                 p_department_id   IN       employees.department_id%TYPE
+                             )
+   IS
+   BEGIN
+      --
+      UPDATE   employees
+      SET      department_id  = p_department_id
+      WHERE    employee_id    = p_employee_id;
+      --
+      COMMIT WORK;
+      --
+   END;
+   --
+   -----------------------------------------------------------------------------------
+   --
    -- destroy a specified employee
    --
    PROCEDURE delete_emp(
