@@ -156,6 +156,24 @@ IS
          FROM     departments;
    END;
    --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read details on a specified departments
+   --
+   PROCEDURE departments_r(
+                             p_department_id    IN      NUMBER,
+                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                          )
+   IS
+   BEGIN
+      --
+      OPEN p_details FOR
+         SELECT   *
+         FROM     departments
+         WHERE    department_id = p_department_id;
+   END;
+   --
 
 END;
 /

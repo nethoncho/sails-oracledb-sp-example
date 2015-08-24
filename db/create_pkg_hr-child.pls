@@ -84,6 +84,15 @@ IS
    PROCEDURE departments_r(
                              p_details IN OUT  hr_child.dept_details_refcur_t
                           );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read details on a specified departments
+   --
+   PROCEDURE departments_r(
+                             p_department_id    IN       NUMBER,
+                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                          );
 END;
 /
 

@@ -95,6 +95,16 @@ IS
                              p_details          IN OUT  hr_child.empl_details_refcur_t
                           );
    --
+      --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read a specified employee's details
+   --
+   PROCEDURE employees_r(
+                             p_department_id    IN      departments.department_id%TYPE,
+                             p_details          IN OUT  hr_child.empl_details_refcur_t
+                          );
+
    -----------------------------------------------------------------------------------
    --
    -- update a specified employee's email
@@ -118,9 +128,19 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read all employees details
+   -- Read details on all departments
    --
    PROCEDURE departments_r(
+                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                          );
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read details on a specified departments
+   --
+   PROCEDURE departments_r(
+                             p_department_id    IN       NUMBER,
                              p_details          IN OUT  hr_child.dept_details_refcur_t
                           );
    --
