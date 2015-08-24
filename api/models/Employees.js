@@ -55,8 +55,11 @@ module.exports = {
       type: 'integer',
       required: false
     },
-    DEPARTMENT_ID: {
+    DEPARTMENT: {
       type: 'integer',
+      model: 'DEPARTMENTS',
+      columnName: 'DEPARTMENT_ID',
+      foreignKey: true,
       required: false
     }
   }
