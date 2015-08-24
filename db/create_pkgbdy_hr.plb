@@ -28,7 +28,7 @@ IS
       DECLARE
          v_cursor sys_refcursor;
       BEGIN
-         hr_child.employees_c(
+         hr_child.create_emp(
                                  p_FIRST_NAME,
                                  p_LAST_NAME,
                                  p_EMAIL,
@@ -94,10 +94,11 @@ IS
                         )
    IS
    BEGIN
-      hr_child.employees_u(
-                              p_employee_id,
-                              p_email
-                          );
+      hr_child.update_email_addr(
+                                    p_employee_id,
+                                    p_email
+                                );
+      --
    END;
    --
    -----------------------------------------------------------------------------------
@@ -110,9 +111,28 @@ IS
    IS
    BEGIN
       --
-      hr_child.employees_d( p_employee_id );
+      hr_child.delete_emp( p_employee_id );
       --
       --
+   END;
+   --
+   --===========================================================
+   --
+   -- departments
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read all employees details
+   --
+   PROCEDURE departments_r(
+                             p_details IN OUT  hr_child.dept_details_refcur_t
+                          )
+   IS
+   BEGIN
+      --
+      OPEN p_details FOR
+         SELECT   *
+         FROM     departments;
    END;
    --
 END;

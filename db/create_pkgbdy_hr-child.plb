@@ -136,6 +136,26 @@ IS
       COMMIT WORK;
       --
    END;
+   --
+   --===========================================================
+   --
+   -- departments
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read all employees details
+   --
+   PROCEDURE departments_r(
+                             p_details IN OUT  hr_child.dept_details_refcur_t
+                          )
+   IS
+   BEGIN
+      --
+      OPEN p_details FOR
+         SELECT   *
+         FROM     departments;
+   END;
+   --
 
 END;
 /

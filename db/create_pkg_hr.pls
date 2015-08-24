@@ -13,7 +13,7 @@
 -- modification.
 --
 -- Interfacing such legacy stored procedures to Sails without
--- Sails-oracle-sp commits the developer to writting custom
+-- Sails-oracle-sp commits the developer to writing custom
 -- Sail's adapter code for each stored procedure to be called.
 -- In contrast, Sails-oracle-sp programmatically generates the
 -- Sail's adapter code for each stored procedure to be called.
@@ -36,7 +36,7 @@
 -- one of Sail's MVC models, which are located in the
 -- .../sails-oracledb-sp-example/api/models directory.
 --
--- Sail's models names are conceptionally table names, but
+-- Sail's models names are conceptually table names, but
 -- Sails-oracle-sp has repurposed model names as stored procedure names.
 --
 -- This example can only modify the employee table.  Adding the means
@@ -48,7 +48,7 @@
 -- the stored procedure calling syntax for all of these stored procedures.
 --
 -- Sails-oracle-sp uses "named notation" when invoking stored procedures.
--- Using named notation relieves Sails-oracle-sp placing parametes in
+-- Using named notation relieves Sails-oracle-sp placing parameters in
 -- any particular order.
 --
 
@@ -56,21 +56,25 @@ CREATE OR REPLACE
 PACKAGE hr
 IS
    --
+   --===========================================================
+   --
+   -- employees
+   --
    -----------------------------------------------------------------------------------
    --
    -- create an employee
    --
    PROCEDURE employees_c(
-                           p_FIRST_NAME      IN VARCHAR2,
-                           p_LAST_NAME       IN VARCHAR2,
-                           p_EMAIL           IN VARCHAR2,
-                           p_PHONE_NUMBER    IN VARCHAR2,
-                           p_HIRE_DATE       IN VARCHAR2,
-                           p_JOB_ID          IN VARCHAR2,
-                           p_SALARY          IN NUMBER,
-                           p_COMMISSION_PCT  IN NUMBER,
-                           p_MANAGER_ID      IN NUMBER,
-                           p_DEPARTMENT_ID   IN NUMBER,
+                           p_first_name      IN VARCHAR2,
+                           p_last_name       IN VARCHAR2,
+                           p_email           IN VARCHAR2,
+                           p_phone_number    IN VARCHAR2,
+                           p_hire_date       IN VARCHAR2,
+                           p_job_id          IN VARCHAR2,
+                           p_salary          IN NUMBER,
+                           p_commission_pct  IN NUMBER,
+                           p_manager_id      IN NUMBER,
+                           p_department_id   IN NUMBER,
                            p_details         IN OUT hr_child.empl_details_refcur_t
                         );
    -----------------------------------------------------------------------------------
@@ -107,6 +111,19 @@ IS
    PROCEDURE employees_d(
                              p_employee_id      IN      employees.employee_id%TYPE
                           );
+   --
+   --===========================================================
+   --
+   -- departments
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read all employees details
+   --
+   PROCEDURE departments_r(
+                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                          );
+   --
 END;
 /
 

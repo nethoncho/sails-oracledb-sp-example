@@ -4,15 +4,22 @@
 -- In this example this package represents "legacy" stored procedures.
 -- Conceptually these stored procedures are pretending to be
 -- existing code that is in production and is otherwise working
--- fine, except its not being designed to support being called via
+-- fine, except they weren't designed to support being called via
 -- REST APIs.
+--
 --
 
 CREATE OR REPLACE
 PACKAGE hr_child
 IS
-   TYPE empl_details_refcur_t IS REF CURSOR RETURN employees%ROWTYPE;
    --
+   TYPE empl_details_refcur_t IS REF CURSOR RETURN employees%ROWTYPE;
+   TYPE dept_details_refcur_t IS REF CURSOR RETURN departments%ROWTYPE;
+   --===========================================================
+   --
+   -- employees
+   --
+    --
    -----------------------------------------------------------------------------------
    --
    -- create an employee
@@ -63,6 +70,19 @@ IS
    --
    PROCEDURE delete_emp(
                              p_employee_id      IN      employees.employee_id%TYPE
+                          );
+   --
+   --===========================================================
+   --
+   -- departments
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read all employees details
+   --
+   PROCEDURE departments_r(
+                             p_details IN OUT  hr_child.dept_details_refcur_t
                           );
 END;
 /
