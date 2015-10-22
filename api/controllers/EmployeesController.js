@@ -24,6 +24,9 @@ module.exports = {
 
     Employees.find(params, function(err, employeess) {
       if (err) return res.negotiate(err);
+      if(req.isSocket) {
+        Employees.subscribe(req, _.pluck(employeess, 'id'));
+      }
       res.json(employeess);
     });
   },
