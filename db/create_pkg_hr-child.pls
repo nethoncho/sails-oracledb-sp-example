@@ -12,6 +12,21 @@
 CREATE OR REPLACE
 PACKAGE hr_child
 IS
+   ec_success                      CONSTANT NUMBER := 0;
+   --
+   ec_negative_salary              CONSTANT NUMBER          := 20010;
+   negative_salary                 EXCEPTION;
+   PRAGMA EXCEPTION_INIT(  negative_salary, -20010 );
+   --
+   ec_martians_landed              CONSTANT NUMBER          := 20011;
+   martians_landed                 EXCEPTION;
+   PRAGMA EXCEPTION_INIT(  martians_landed, -20011 );
+   --
+   ec_undefined_failure            CONSTANT NUMBER := 20012;
+   --
+   FUNCTION msg ( p_retcode   IN NUMBER) RETURN VARCHAR2;
+   --
+   --=======================================================
    --
    TYPE empl_details_refcur_t IS REF CURSOR RETURN emp%ROWTYPE;
    TYPE dept_details_refcur_t IS REF CURSOR RETURN dept%ROWTYPE;
@@ -103,4 +118,3 @@ IS
 END;
 /
 
-CREATE SEQUENCE EMPLOYEES_SEQ START WITH 1 INCREMENT BY 1;

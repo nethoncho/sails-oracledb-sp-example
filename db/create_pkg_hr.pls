@@ -56,6 +56,8 @@ CREATE OR REPLACE
 PACKAGE hr
 IS
    --
+   PROCEDURE return_codes_r( p_details     IN OUT   SYS_REFCURSOR );
+   --
    --===========================================================
    --
    -- emp

@@ -101,7 +101,23 @@ IS
                                     p_sal    IN NUMBER
                                )
    IS
+      PROCEDURE validate_sal(
+                               p_sal    IN NUMBER
+                             )
+      IS
+      BEGIN
+         IF p_sal < 0
+         THEN
+            RAISE negative_salary;
+         END IF;
+      EXCEPTION
+         WHEN negative_salary
+         THEN
+            RAISE;
+      END;
    BEGIN
+      --
+      validate_sal( p_sal );
       --
       UPDATE   emp
       SET      sal = p_sal
@@ -184,7 +200,34 @@ IS
          WHERE    deptno = p_deptno;
    END;
    --
-
+   PROCEDURE msg (
+                        p_retcode   IN  NUMBER,
+                        p_msg       OUT VARCHAR2
+                  )
+   IS
+      retval VARCHAR2(300) := 'undefined error';
+   BEGIN
+      --
+      p_msg :=  retval;
+      --
+      CASE  p_retcode
+         WHEN ec_success                   THEN retval := 'operation succeeded';
+         WHEN ec_negative_salary           THEN retval := 'negative salary';
+         WHEN ec_martians_landed           THEN retval := 'Martians Landed!  THIS IS NOT A DRILL!';
+      ELSE
+         retval := 'internal error: routine likely encountered unexpected exception(' || TO_CHAR( p_retcode ) || ')';
+      END CASE;
+      p_msg := retval;
+   END;
+   --
+      FUNCTION msg ( p_retcode   IN NUMBER) RETURN VARCHAR2
+      IS
+         v_buf VARCHAR2(200);
+      BEGIN
+         msg( p_retcode, v_buf );
+         RETURN v_buf;
+      END;
+   --
 END;
 /
 
