@@ -68,9 +68,9 @@ IS
                            p_empno        IN NUMBER,
                            p_ename        IN VARCHAR2,
                            p_job          IN VARCHAR2,
-                           p_mgr          IN VARCHAR2,
+                           p_mgr          IN NUMBER,
                            p_hiredate     IN VARCHAR2,
-                           p_sal          IN VARCHAR2,
+                           p_sal          IN NUMBER,
                            p_comm         IN NUMBER,
                            p_deptno       IN NUMBER,
                            p_details      IN OUT hr_child.empl_details_refcur_t
@@ -99,17 +99,17 @@ IS
    -- Read a specified employee's details
    --
    PROCEDURE employees_r(
-                             p_deptno    IN      dept.deptno%TYPE,
-                             p_details   IN OUT  hr_child.empl_details_refcur_t
-                          );
+                             p_deptno     IN       emp.deptno%TYPE,
+                             p_details    IN OUT   hr_child.empl_details_refcur_t
+                        );
    --
    -----------------------------------------------------------------------------------
    --
-   -- update a specified employee's manager
+   -- update a specified employee's compensation
    --
    PROCEDURE employees_u(
-                           p_empno  IN       emp.empno%TYPE,
-                           p_mgr    IN       VARCHAR2
+                           p_empno  IN   emp.empno%TYPE,
+                           p_sal    IN   emp.sal%TYPE
                         );
    --
    --
@@ -118,8 +118,8 @@ IS
    -- transfer employee to another department
    --
    PROCEDURE employees_u(
-                           p_empno     IN       emp.empno%TYPE,
-                           p_deptno    IN       emp.deptno%TYPE
+                              p_empno      IN   emp.empno%TYPE,
+                              p_deptno     IN   emp.deptno%TYPE
                         );
    --
    -----------------------------------------------------------------------------------
@@ -127,16 +127,16 @@ IS
    -- destroy a specified employee
    --
    PROCEDURE employees_d(
-                             p_empno      IN      emp.empno%TYPE
-                          );
+                           p_empno  IN emp.empno%TYPE
+                        );
    --
    --===========================================================
    --
-   -- dept
+   -- departments
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read details on all dept
+   -- Read details on all departments
    --
    PROCEDURE departments_r(
                              p_details          IN OUT  hr_child.dept_details_refcur_t
@@ -145,11 +145,11 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read details on a specified dept
+   -- Read details on a specified departments
    --
    PROCEDURE departments_r(
-                             p_deptno    IN       NUMBER,
-                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                             p_deptno    IN      NUMBER,
+                             p_details   IN OUT  hr_child.dept_details_refcur_t
                           );
    --
 END;

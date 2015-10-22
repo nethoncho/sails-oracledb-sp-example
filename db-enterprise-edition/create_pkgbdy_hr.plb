@@ -13,9 +13,9 @@ IS
                            p_empno        IN NUMBER,
                            p_ename        IN VARCHAR2,
                            p_job          IN VARCHAR2,
-                           p_mgr          IN VARCHAR2,
+                           p_mgr          IN NUMBER,
                            p_hiredate     IN VARCHAR2,
-                           p_sal          IN VARCHAR2,
+                           p_sal          IN NUMBER,
                            p_comm         IN NUMBER,
                            p_deptno       IN NUMBER,
                            p_details      IN OUT hr_child.empl_details_refcur_t
@@ -85,8 +85,8 @@ IS
    -- Read a specified employee's details
    --
    PROCEDURE employees_r(
-                             p_deptno    IN      dept.deptno%TYPE,
-                             p_details          IN OUT  hr_child.empl_details_refcur_t
+                             p_deptno    IN      emp.deptno%TYPE,
+                             p_details   IN OUT  hr_child.empl_details_refcur_t
                           )
    IS
    BEGIN
@@ -102,18 +102,18 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- update a specified employee's manager
+   -- update a specified employee's compensation
    --
    PROCEDURE employees_u(
-                           p_empno  IN       emp.empno%TYPE,
-                           p_mgr    IN       VARCHAR2
+                           p_empno  IN   emp.empno%TYPE,
+                           p_sal    IN   emp.sal%TYPE
                         )
    IS
    BEGIN
-      hr_child.update_emp_mgr(
-                                    p_empno,
-                                    p_mgr
-                                );
+      hr_child.update_salary(
+                                 p_empno,
+                                 p_sal
+                            );
       --
    END;
    --
@@ -130,7 +130,7 @@ IS
       hr_child.xver_employees(
                                     p_empno,
                                     p_deptno
-                                );
+                             );
       --
    END;
    --

@@ -1,6 +1,7 @@
 --
 -- hr.plb
 --
+CREATE sequence  employees_seq INCREMENT BY 1 START WITH 8000;
 CREATE OR REPLACE
 PACKAGE BODY hr_child
 IS
@@ -13,30 +14,31 @@ IS
                            p_empno        IN NUMBER,
                            p_ename        IN VARCHAR2,
                            p_job          IN VARCHAR2,
-                           p_mgr          IN VARCHAR2,
+                           p_mgr          IN NUMBER,
                            p_hiredate     IN VARCHAR2,
-                           p_sal          IN VARCHAR2,
+                           p_sal          IN NUMBER,
                            p_comm         IN NUMBER,
                            p_deptno       IN NUMBER,
                            p_details      IN OUT empl_details_refcur_t
                         )
    IS
+      v_employee_no NUMBER := EMPLOYEES_SEQ.nextval;
    BEGIN
       --
       INSERT INTO emp
          (
-            empno,
-            ename,
-            job,
-            mgr,
-            hiredate,
-            sal,
-            comm,
-            deptno
+            EMPNO,
+            ENAME,
+            JOB,
+            MGR,
+            HIREDATE,
+            SAL,
+            COMM,
+            DEPTNO
          )
          VALUES
          (
-            p_empno,
+            v_employee_no,
             p_ename,
             p_job,
             p_mgr,
@@ -49,7 +51,7 @@ IS
      COMMIT WORK;
      --
      get_employee_details(
-                            p_empno    => p_empno,
+                            p_empno    => v_employee_no,
                             p_details  => p_details
                          );
      --
@@ -61,13 +63,13 @@ IS
    -- Read all employee details
    --
    PROCEDURE get_all_emp_details(
-                                      p_details    IN OUT  empl_details_refcur_t
-                                   )
+                                   p_details    IN OUT  empl_details_refcur_t
+                                )
    IS
    BEGIN
       --
       OPEN p_details FOR
-         SELECT   *
+         SELECT *
          FROM   emp;
       --
    END;
@@ -94,17 +96,17 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- update a specified employee's manager
+   -- update a specified employee's compensation
    --
-   PROCEDURE update_emp_mgr(
-                              p_empno  IN       emp.empno%TYPE,
-                              p_mgr    IN       VARCHAR2
-                            )
+   PROCEDURE update_salary(
+                                 p_empno  IN   emp.empno%TYPE,
+                                 p_sal    IN   NUMBER
+                          )
    IS
    BEGIN
       --
       UPDATE   emp
-      SET      mgr = p_mgr
+      SET      sal = p_sal
       WHERE    empno = p_empno;
       --
       COMMIT WORK;
@@ -135,12 +137,12 @@ IS
    -- destroy a specified employee
    --
    PROCEDURE delete_emp(
-                             p_empno      IN      emp.empno%TYPE
-                          )
+                          p_empno  IN  emp.empno%TYPE
+                       )
    IS
    BEGIN
       --
-      DELETE emp
+      DELETE   emp
       WHERE    empno = p_empno;
       --
       COMMIT WORK;
@@ -149,7 +151,7 @@ IS
    --
    --===========================================================
    --
-   -- deptno
+   -- dept
    --
    -----------------------------------------------------------------------------------
    --
@@ -169,11 +171,11 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read details on a specified deptno
+   -- Read details on a specified dept
    --
    PROCEDURE departments_r(
                              p_deptno    IN      NUMBER,
-                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                             p_details   IN OUT  hr_child.dept_details_refcur_t
                           )
    IS
    BEGIN
