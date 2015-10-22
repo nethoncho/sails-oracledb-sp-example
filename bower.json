@@ -1,0 +1,31 @@
+{
+  "name": "sails-oracledb-sp-example",
+  "version": "0.1.6",
+  "homepage": "https://github.com/nethoncho/sails-oracledb-sp-example",
+  "authors": [
+    "nethoncho <nethoncho@gmail.com>",
+    "buto <jhendrix58@gmail.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-bootstrap": "~0.13.4",
+    "angular-loading-bar": "~0.8.0",
+    "angular-toastr": "~1.5.0",
+    "angular-xeditable": "~0.1.9",
+    "font-awesome": "~4.4.0",
+    "ui-router": "~0.2.15",
+    "angular-touch": "~1.4.7",
+    "lodash": "~3.10.1",
+    "bootstrap": "~3.3.5"
+  }
+}
