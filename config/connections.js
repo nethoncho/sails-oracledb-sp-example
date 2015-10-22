@@ -26,6 +26,7 @@ module.exports.connections = {
     user: 'scott',
     password: 'tiger',
     package: 'HR',
+    findCustomExceptions: 'RETURN_CODES_R',
     cursorName: 'DETAILS',
     connectString: 'localhost/orcl'
   }
