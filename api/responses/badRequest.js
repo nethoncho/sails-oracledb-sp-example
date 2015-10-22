@@ -40,7 +40,22 @@ module.exports = function badRequest(data, options) {
 
   // If the user-agent wants JSON, always respond with JSON
   if (req.wantsJSON) {
-    return res.jsonx(data);
+    try {
+      // This formats waterline errors like other sails errors
+      // See WLError.prototype.toJSON in waterline/error/WLError.js
+      var WLResponse = data.toJSON();
+      if(WLResponse.hasOwnProperty('error') && WLResponse.hasOwnProperty('summary')) {
+        return res.jsonx({
+          code: WLResponse.error,
+          message: WLResponse.summary
+        });
+      } else {
+        // Not a waterline error
+        throw 'NonWLError';
+      }
+    } catch (e) {
+      return res.jsonx(data);
+    }
   }
 
   // If second argument is a string, we take that to mean it refers to a view.
