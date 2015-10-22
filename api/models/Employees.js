@@ -13,45 +13,45 @@ module.exports = {
   autoUpdatedAt: false,
 
   attributes: {
-    EMPLOYEE_ID: {
+    id: {
+      columnName: 'EMPNO',
       type: 'integer',
       autoIncrement: true,
       primaryKey: true,
       unique: true
     },
-    FIRST_NAME: {
+    name: {
+      columnName: 'ENAME',
       type: 'string',
       required: false
     },
-    LAST_NAME: {
+    job: {
+      columnName: 'JOB',
       type: 'string',
       required: true
     },
-    EMAIL: {
+    hireDate: {
+      columnName: 'HIREDATE',
       type: 'string',
       required: true
     },
-    PHONE_NUMBER: {
-      type: 'string',
-      required: false
-    },
-    HIRE_DATE: {
-      type: 'string',
+    department: {
+      columnName: 'DEPTNO',
+      type: 'integer',
       required: true
     },
-    JOB_ID: {
-      type: 'string',
-      required: true
-    },
-    SALARY: {
+    salary: {
+      columnName: 'SAL',
       type: 'float',
       required: false
     },
-    COMMISSION_PCT: {
+    commission: {
+      columnName: 'COMM',
       type: 'float',
       required: false
     },
-    MANAGER_ID: {
+    managerId: {
+      columnName: 'MGR',
       type: 'integer',
       required: false
     }
