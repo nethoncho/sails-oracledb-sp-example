@@ -21,29 +21,13 @@
 
 module.exports.connections = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Local disk storage for DEVELOPMENT ONLY                                  *
-  *                                                                          *
-  * Installed by default.                                                    *
-  *                                                                          *
-  ***************************************************************************/
-  localDiskDb: {
-    adapter: 'sails-disk'
-  },
-
-  /***************************************************************************
-  *                                                                          *
-  * More adapters: https://github.com/balderdashy/sails                      *
-  *                                                                          *
-  ***************************************************************************/
   oraclehr: {
     adapter: 'sails-oracle-sp',
-    user: 'hr',
-    password: 'welcome',
+    user: 'scott',
+    password: 'tiger',
     package: 'HR',
     cursorName: 'DETAILS',
-    connectString: 'localhost/xe'
+    connectString: 'localhost/orcl'
   }
 
 };
