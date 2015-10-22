@@ -5,6 +5,36 @@ CREATE OR REPLACE
 PACKAGE BODY hr
 IS
    --
+   --==================================================================
+   --
+   -- return_codes_r()
+   --
+   --    obtains list of error messages for various user-defined Oracle Exceptions.
+   --
+   PROCEDURE return_codes_r( p_details     IN OUT   SYS_REFCURSOR )
+   IS
+      --
+      retcode_details_tab   retcode_nt := retcode_nt();
+      --
+   BEGIN
+      FOR v_retcode IN hr_child.ec_negative_salary .. hr_child.ec_undefined_failure
+      LOOP
+         BEGIN
+            retcode_details_tab.EXTEND();
+            retcode_details_tab(retcode_details_tab.LAST) := retcode_obj_t(
+                                                                              v_retcode,
+                                                                              hr_child.msg ( v_retcode )
+                                                                          );
+         END;
+      END LOOP;
+      --
+      OPEN p_details FOR
+         SELECT *
+         FROM TABLE(cast(retcode_details_tab AS retcode_nt));
+      --
+   END;
+   --
+   --
    -----------------------------------------------------------------------------------
    --
    -- create an employee
@@ -115,6 +145,10 @@ IS
                                     p_sal
                                 );
       --
+   EXCEPTION
+      WHEN hr_child.negative_salary
+      THEN
+         RAISE;
    END;
    --
    -----------------------------------------------------------------------------------
