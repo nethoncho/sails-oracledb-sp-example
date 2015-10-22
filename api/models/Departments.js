@@ -31,10 +31,6 @@ module.exports = {
     LOCATION_ID: {
       type: 'integer',
       required: false
-    },
-    EMPLOYEES: {
-      collection: 'EMPLOYEES',
-      via: 'DEPARTMENT'
     }
   }
 };

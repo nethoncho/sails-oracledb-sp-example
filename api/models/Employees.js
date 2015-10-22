@@ -54,13 +54,6 @@ module.exports = {
     MANAGER_ID: {
       type: 'integer',
       required: false
-    },
-    DEPARTMENT: {
-      type: 'integer',
-      model: 'DEPARTMENTS',
-      columnName: 'DEPARTMENT_ID',
-      foreignKey: true,
-      required: false
     }
   }
 };
