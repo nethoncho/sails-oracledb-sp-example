@@ -70,7 +70,7 @@ IS
                            p_job          IN VARCHAR2,
                            p_mgr          IN VARCHAR2,
                            p_hiredate     IN VARCHAR2,
-                           p_sal          IN VARCHAR2,
+                           p_sal          IN NUMBER,
                            p_comm         IN NUMBER,
                            p_deptno       IN NUMBER,
                            p_details      IN OUT hr_child.empl_details_refcur_t
@@ -105,11 +105,11 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- update a specified employee's manager
+   -- update a specified employee's salary
    --
    PROCEDURE employees_u(
-                           p_empno  IN       emp.empno%TYPE,
-                           p_mgr    IN       VARCHAR2
+                           p_empno  IN emp.empno%TYPE,
+                           p_sal    IN NUMBER
                         );
    --
    --
