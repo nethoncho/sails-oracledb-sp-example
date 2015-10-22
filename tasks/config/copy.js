@@ -22,6 +22,44 @@ module.exports = function(grunt) {
 				cwd: './assets',
 				src: ['**/*.!(coffee|less)'],
 				dest: '.tmp/public'
+			},{
+				expand: true,
+				cwd: './bower_components',
+				src: [
+					'angular/angular.js',
+					'angular-touch/angular-touch.js',
+					'angular-animate/angular-animate.js',
+					'angular-loading-bar/build/loading-bar.js',
+					'angular-toastr/dist/angular-toastr.tpls.js',
+					'angular-bootstrap/ui-bootstrap-tpls.js',
+					'ui-router/release/angular-ui-router.js',
+					'angular-xeditable/dist/js/xeditable.js',
+					'lodash/lodash.js',
+				],
+				flatten: true,
+				dest: '.tmp/public/js/dependencies'
+			},{
+				expand: true,
+				cwd: './bower_components',
+				src: [
+				        'bootstrap/dist/css/bootstrap.css',
+				        'angular-loading-bar/build/loading-bar.css',
+					'angular-toastr/dist/angular-toastr.css',
+					'font-awesome/css/font-awesome.css',
+					'font-awesome/css/font-awesome.css.map',
+					'angular-xeditable/dist/css/xeditable.css'
+				],
+				flatten: true,
+				dest: '.tmp/public/styles'
+			},{
+				expand: true,
+				cwd: './bower_components',
+				src: [
+				        'bootstrap/dist/fonts/*',
+					'font-awesome/fonts/*'
+				],
+				flatten: true,
+				dest: '.tmp/public/fonts'
 			}]
 		},
 		build: {
