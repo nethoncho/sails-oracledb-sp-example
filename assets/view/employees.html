@@ -16,6 +16,16 @@
       </tr>
     </thead>
     <tbody>
+      <tr ng-repeat="employee in employeess track by employee.id" ng-animate="'animate'">
+        <td>{{employee.id}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.job}}</td>
+        <td>{{employee.hireDate}}</td>
+        <td>{{employee.department}}</td>
+        <td><a editable-number="employee.salary" onbeforesave="updateSalary(employee, $data)">{{employee.salary || 'NULL'}}</a></td>
+        <td>{{employee.commission}}</td>
+        <td>{{employee.managerId}}</td>
+      </tr>
     <tbody>
   </table>
 </div>
