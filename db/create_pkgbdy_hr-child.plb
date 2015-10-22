@@ -94,17 +94,17 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- update a specified employee's manager
+   -- update a specified employee's salary
    --
-   PROCEDURE update_emp_mgr(
-                              p_empno  IN       emp.empno%TYPE,
-                              p_mgr    IN       VARCHAR2
-                            )
+   PROCEDURE update_emp_salary(
+                                    p_empno  IN emp.empno%TYPE,
+                                    p_sal    IN NUMBER
+                               )
    IS
    BEGIN
       --
       UPDATE   emp
-      SET      mgr = p_mgr
+      SET      sal = p_sal
       WHERE    empno = p_empno;
       --
       COMMIT WORK;
