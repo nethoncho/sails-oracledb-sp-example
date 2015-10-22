@@ -1,0 +1,22 @@
+<div class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-click="nav.navCollapsed = !nav.navCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="root.home">Home</a>
+    </div>
+    <div class="navbar-collapse" ng-class="{collapse: nav.navCollapsed}">
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: $state.includes('root.employees')}"><a ui-sref="root.employees"><i class="fa fa-users"></i> Employees</a></li>
+        <li ng-class="{active: $state.includes('root.departments')}"><a ui-sref="root.departments"><i class="fa fa-sitemap"></i> Department</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div ui-view></div>
+</div>
