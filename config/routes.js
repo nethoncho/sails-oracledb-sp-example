@@ -33,6 +33,10 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/*': function(req, res, next) {sails.log.verbose(req.method, req.url); next();},
+  'GET    /api/employees/:id?': 'Employees.find',
+  'POST   /api/employees':      'Employees.create',
+  'PUT    /api/employees/:id':  'Employees.update',
+  'DELETE /api/employees/:id':  'Employees.destroy',
   '/': { view: 'app' }
 
   /***************************************************************************
