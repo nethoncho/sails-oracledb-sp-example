@@ -5,7 +5,7 @@ angular.module('exampleApp').config(['$stateProvider',
     $stateProvider
       .state('root', {
         abstract: true,
-        ontroller: 'navCtrl',
+        controller: 'navCtrl',
         templateUrl: 'view/navbar.html',
       })
       .state('root.home', {
@@ -14,12 +14,12 @@ angular.module('exampleApp').config(['$stateProvider',
       })
       .state('root.employees', {
         url: '/employees',
-        ontroller: 'employeesCtrl',
+        controller: 'employeesCtrl',
         templateUrl: 'view/employees.html',
       })
       .state('root.departments', {
         url: '/departments',
-        ontroller: 'departmentsCtrl',
+        controller: 'departmentsCtrl',
         templateUrl: 'view/departments.html',
       });
   }
