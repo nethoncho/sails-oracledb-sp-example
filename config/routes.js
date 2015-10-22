@@ -32,8 +32,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'app' },
-  '/about': { view: 'homepage' }
+  '/*': function(req, res, next) {sails.log.verbose(req.method, req.url); next();},
+  '/': { view: 'app' }
 
   /***************************************************************************
   *                                                                          *
