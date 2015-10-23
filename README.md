@@ -34,18 +34,25 @@ $sudo su -
 # cd Downloads
 # wget https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz
 # tar xzf node-v0.12.7-linux-x64.tar.gz
-# cd node-v0.12.7-linux-x64```
+# cd node-v0.12.7-linux-x64
+```
 We install Node.js in /usr/local directory. Use following command to copy the files to appropriate sub-directotories in /usr/local:
-```bash
-#for dir in bin include lib share; do cp -par ${dir}/* /usr/local/${dir}/; done```
+```javascript
+#for dir in bin include lib share; do cp -par ${dir}/* /usr/local/${dir}/; done
+```
 To verify version of node and npm, type:
-```bash
+```javascript
 #node --version
 v0.12.7
 #npm --version
-3.3.8```
+3.3.8
+```
+Now install npm
 
-#npm install -g npm```
+```javascript
+#npm install -g npm
+```
+
 ##Install the Oracle Instant Client 'Basic' and 'SDK' RPMs
 The Oracle VM comes with FireFox preinstalled.
 
@@ -55,24 +62,27 @@ The Oracle VM comes with FireFox preinstalled.
 [Oracle Instant Client 'Basic' and Oracle Instant Client 'SDK' RPMs](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html#ic_x64_inst "download Instant Client RPMs")
 
 copy the downloaded rpms to /home/oracle/rpms and then install the packages as root
-```bash
+```javascript
 $mkdir /home/oracle/rpms
 $mv /home/oracle/Downloads/*.rpm /home/oracle/rpms
 $sudo su -
 #cd /home/oracle/rpms
 #rpm -ivh oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
 #rpm -ivh oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
-#exit```
+#exit
+```
 Add the following lines to /home/oracle/.bashrc:
-```bash
+```javascript
 export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
-export PATH=/opt/node-v4.1.0-linux-x64/bin:$PATH```
+export PATH=/opt/node-v4.1.0-linux-x64/bin:$PATH
+```
 
 ##Install git
-```bash
+```javascript
 sudo su -
 #yum install git
-exit```
+exit
+```
 
 [text](http://www.oracle.com/ "title")
 
