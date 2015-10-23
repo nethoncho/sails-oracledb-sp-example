@@ -1,7 +1,7 @@
 /**
-* Employees.js
+* Employee.js
 *
-* @description :: Employees
+* @description :: Employee
 */
 
 module.exports = {
