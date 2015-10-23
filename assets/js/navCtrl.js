@@ -16,6 +16,13 @@ angular.module('exampleApp').config(['$stateProvider',
         url: '/employees',
         controller: 'employeesCtrl',
         templateUrl: 'view/employees.html',
+        resolve: {
+          departments: ['$http', function ($http) {
+            return $http.get('/api/department').then(function (data) {
+              return data.data;
+            });
+          }]
+        }
       })
       .state('root.departments', {
         url: '/departments',
