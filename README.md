@@ -22,19 +22,19 @@ Enable the Oracle 12c's VM's bidirectional clipboard. In the VM's menu: Devices-
 
 Set the VM's memory for 3GB. Set the VM's memory for 3GB. In the VM's menu: Machine->settings->system and configure for 3GB of memory.
 Database Information:
-Oracle SID    : cdb1
-Pluggable DB  : orcl
-ALL PASSWORDS ARE : oracle
-The Linux Username and password is oracle.
+1 Oracle SID    : cdb1
+2 Pluggable DB  : orcl
+3 ALL PASSWORDS ARE : oracle
+4 The Linux Username and password is oracle.
 
 ## Install Node
 
-```bash
+```javascript
 $sudo su -
-[#] cd Downloads
-\# wget https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz
-\# tar xzf node-v0.12.7-linux-x64.tar.gz
-\# cd node-v0.12.7-linux-x64```
+# cd Downloads
+# wget https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz
+# tar xzf node-v0.12.7-linux-x64.tar.gz
+# cd node-v0.12.7-linux-x64```
 We install Node.js in /usr/local directory. Use following command to copy the files to appropriate sub-directotories in /usr/local:
 ```bash
 #for dir in bin include lib share; do cp -par ${dir}/* /usr/local/${dir}/; done```
