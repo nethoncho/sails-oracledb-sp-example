@@ -14,18 +14,20 @@ install VirtualBox
 Download and install [Oracle VM VirtualBox](http://www.oracle.com/technetwork/server-storage/virtualbox/downloads/index.html "download VirtualBox") on your host system
 
 ##Download the Oracle 12c VM
-The Oracle 12c VM is provided in an Open Virtual Appliance (OVA) file.  An ova is essentially an archive that includes a disk image and other supporting files that are suitable to be imported into VirtualBox as a VM.  The VM provided by this ova includes Oracle Linux 7 and Oracle Database 12c Release 1 Enterprise Edition.
+The Oracle 12c VM is provided in an Open Virtual Appliance (OVA) file.  An OVA is essentially an archive that includes a disk image and other supporting files that are suitable to be imported into VirtualBox as a VM.  The VM provided by this OVA includes Oracle Linux 7 and Oracle Database 12c Release 1 Enterprise Edition.
 
-Download the [Oracle 12c ova](http://www.oracle.com/technetwork/database/enterprise-edition/databaseappdev-vm-161299.html "Oracle DB Developer VM"), which is the Oracle DB Developer VM. Launch it by double clicking it and then import it into VirtualBox.
+Download the [Oracle 12c OVA](http://www.oracle.com/technetwork/database/enterprise-edition/databaseappdev-vm-161299.html "Oracle DB Developer VM"), which is the Oracle DB Developer VM. Launch it by double clicking it and then import it into VirtualBox.
+
+After the VM is launched then it needs a bit of configuration.
 
 Enable the Oracle 12c's VM's bidirectional clipboard. In the VM's menu: Devices->shared clipboard->bidirectional.
 
 Set the VM's memory for 3GB. Set the VM's memory for 3GB. In the VM's menu: Machine->settings->system and configure for 3GB of memory.
 Database Information:
-1 Oracle SID    : cdb1
-2 Pluggable DB  : orcl
-3 ALL PASSWORDS ARE : oracle
-4 The Linux Username and password is oracle.
+* Oracle SID    : cdb1
+* Pluggable DB  : orcl
+* ALL PASSWORDS ARE : oracle
+* The Linux Username and password is oracle.
 
 ## Install Node
 
