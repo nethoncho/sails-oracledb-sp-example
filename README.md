@@ -31,10 +31,10 @@ The Linux Username and password is oracle.
 
 ```bash
 $sudo su -
-# cd Downloads
-#wget https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz
-#tar xzf node-v0.12.7-linux-x64.tar.gz
-#cd node-v0.12.7-linux-x64```
+<span>#</span> cd Downloads
+<span>#</span> wget https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz
+<span>#</span> tar xzf node-v0.12.7-linux-x64.tar.gz
+<span>#</span> cd node-v0.12.7-linux-x64```
 We install Node.js in /usr/local directory. Use following command to copy the files to appropriate sub-directotories in /usr/local:
 ```bash
 #for dir in bin include lib share; do cp -par ${dir}/* /usr/local/${dir}/; done```
