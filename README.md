@@ -31,7 +31,7 @@ The Linux Username and password is oracle.
 
 ```bash
 $sudo su -
-\# cd Downloads
+[#] cd Downloads
 \# wget https://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz
 \# tar xzf node-v0.12.7-linux-x64.tar.gz
 \# cd node-v0.12.7-linux-x64```
