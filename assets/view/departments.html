@@ -1,1 +1,21 @@
-<h2>Departments</h2>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Departments</h3>
+  </div>
+  <table class="table table-striped table-condensed table-responsive">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="department in departments" ng-animate="'animate'">
+        <td>{{department.id}}</td>
+        <td><a editable-text="department.name" onbeforesave="updateName(department, $data)">{{department.name || 'NULL'}}</a></td>
+        <td><a editable-text="department.location" onbeforesave="updateLocation(department, $data)">{{department.location || 'NULL'}}</a></td>
+      </tr>
+    <tbody>
+  </table>
+</div>
