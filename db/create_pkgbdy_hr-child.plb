@@ -114,6 +114,9 @@ IS
          WHEN negative_salary
          THEN
             RAISE;
+         WHEN exceeded_specified_precision
+         THEN
+            RAISE value_too_large;
       END;
    BEGIN
       --
@@ -213,6 +216,7 @@ IS
       CASE  p_retcode
          WHEN ec_success                   THEN retval := 'operation succeeded';
          WHEN ec_negative_salary           THEN retval := 'negative salary';
+         WHEN ec_value_too_large           THEN retval := 'value too large for this field or text too long for this field';
          WHEN ec_martians_landed           THEN retval := 'Martians Landed!  THIS IS NOT A DRILL!';
       ELSE
          retval := 'internal error: routine likely encountered unexpected exception(' || TO_CHAR( p_retcode ) || ')';

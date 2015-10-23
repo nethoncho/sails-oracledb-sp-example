@@ -18,11 +18,22 @@ IS
    negative_salary                 EXCEPTION;
    PRAGMA EXCEPTION_INIT(  negative_salary, -20010 );
    --
-   ec_martians_landed              CONSTANT NUMBER          := 20011;
-   martians_landed                 EXCEPTION;
-   PRAGMA EXCEPTION_INIT(  martians_landed, -20011 );
+   ec_value_too_large              CONSTANT NUMBER          := 20011;
+   value_too_large                 EXCEPTION;
+   PRAGMA EXCEPTION_INIT(  value_too_large, -20011 );
    --
-   ec_undefined_failure            CONSTANT NUMBER := 20012;
+   ec_martians_landed              CONSTANT NUMBER          := 20012;
+   martians_landed                 EXCEPTION;
+   PRAGMA EXCEPTION_INIT(  martians_landed, -20012 );
+   --
+   ec_undefined_failure            CONSTANT NUMBER := 20014;
+   --
+   -- name oracle exceptions
+   --
+   -- ORA-01438: value larger than specified precision allowed for this column
+   --
+   exceeded_specified_precision  EXCEPTION;
+   PRAGMA EXCEPTION_INIT(  exceeded_specified_precision, -1438 );
    --
    FUNCTION msg ( p_retcode   IN NUMBER) RETURN VARCHAR2;
    --
