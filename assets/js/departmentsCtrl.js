@@ -12,7 +12,35 @@ angular.module('exampleApp').controller('departmentsCtrl', ['$scope', '$sailsBin
       }
 
       $http.put('api/department/' + department.id, {
-        salary: data
+        name: data
+      })
+      .success(function(response) {
+        d.resolve(false);
+      })
+      .error(function(response) {
+        if(angular.isObject(response)) {
+          if(response.hasOwnProperty('message')) {
+            d.reject(response.message);
+          } else {
+            d.reject('API Error!');
+          }
+        } else {
+          d.reject('Unknown API Error!');
+        }
+      });
+
+      return d.promise;
+    };
+
+    $scope.updateLocation = function(department, data) {
+      var d = $q.defer();
+
+      if(data) {
+        data = data.trim();
+      }
+
+      $http.put('api/department/' + department.id, {
+        location: data
       })
       .success(function(response) {
         d.resolve(false);
