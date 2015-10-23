@@ -160,7 +160,7 @@ IS
    BEGIN
       --
       DELETE emp
-      WHERE    empno = p_empno;
+      WHERE  empno = p_empno;
       --
       COMMIT WORK;
       --
@@ -172,11 +172,46 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read all emp details
+   -- create a department
    --
-   PROCEDURE departments_r(
-                             p_details IN OUT  hr_child.dept_details_refcur_t
-                          )
+   PROCEDURE add_dept(
+                           p_deptno    IN NUMBER,
+                           p_dname     IN VARCHAR2,
+                           p_loc       IN VARCHAR2,
+                           p_details IN OUT  hr_child.dept_details_refcur_t
+                     )
+   IS
+   BEGIN
+      --
+      INSERT INTO dept
+         (
+            deptno,
+            dname,
+            loc
+         )
+         VALUES
+         (
+            p_deptno,
+            p_dname,
+            p_loc
+         );
+      --
+     COMMIT WORK;
+     --
+     get_dept_details(
+                            p_deptno   => p_deptno,
+                            p_details  => p_details
+                         );
+     --
+   END;
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read all details for all departments
+   --
+   PROCEDURE get_dept_details(
+                                p_details IN OUT  hr_child.dept_details_refcur_t
+                             )
    IS
    BEGIN
       --
@@ -190,10 +225,10 @@ IS
    --
    -- Read details on a specified deptno
    --
-   PROCEDURE departments_r(
-                             p_deptno    IN      NUMBER,
-                             p_details          IN OUT  hr_child.dept_details_refcur_t
-                          )
+   PROCEDURE get_dept_details(
+                                p_deptno    IN      NUMBER,
+                                p_details   IN OUT  hr_child.dept_details_refcur_t
+                             )
    IS
    BEGIN
       --
@@ -202,6 +237,70 @@ IS
          FROM     dept
          WHERE    deptno = p_deptno;
    END;
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified department's name
+   --
+   PROCEDURE update_dept_name(
+                                    p_deptno  IN dept.deptno%TYPE,
+                                    p_name   IN VARCHAR2
+                             )
+   IS
+   BEGIN
+      --
+      --
+      UPDATE   dept
+      SET      dname = p_name
+      WHERE    deptno  = p_deptno;
+      --
+      COMMIT WORK;
+      --
+   END;
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified department's location
+   --
+   PROCEDURE update_dept_loc(
+                                    p_deptno  IN dept.deptno%TYPE,
+                                    p_loc   IN VARCHAR2
+                             )
+   IS
+   BEGIN
+      --
+      --
+      UPDATE   dept
+      SET      loc = p_loc
+      WHERE    deptno  = p_deptno;
+      --
+      COMMIT WORK;
+      --
+   END;
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- destroy a specified department
+   --
+   PROCEDURE delete_dept(
+                           p_deptno  IN dept.deptno%TYPE
+                        )
+   IS
+   BEGIN
+      --
+      DELETE dept
+      WHERE  deptno = p_deptno;
+      --
+      COMMIT WORK;
+      --
+   END;
+   --
+   --
+   --============================================================
+   --
+   -- exception messages
    --
    PROCEDURE msg (
                         p_retcode   IN  NUMBER,
@@ -214,10 +313,10 @@ IS
       p_msg :=  retval;
       --
       CASE  p_retcode
-         WHEN ec_success                   THEN retval := 'operation succeeded';
-         WHEN ec_negative_salary           THEN retval := 'negative salary';
-         WHEN ec_value_too_large           THEN retval := 'value too large for this field or text too long for this field';
-         WHEN ec_martians_landed           THEN retval := 'Martians Landed!  THIS IS NOT A DRILL!';
+         WHEN ec_success             THEN retval := 'operation succeeded';
+         WHEN ec_negative_salary     THEN retval := 'negative salary';
+         WHEN ec_value_too_large     THEN retval := 'value too large for this field or text too long for this field';
+         WHEN ec_martians_landed     THEN retval := 'Martians Landed!  THIS IS NOT A DRILL!';
       ELSE
          retval := 'internal error: routine likely encountered unexpected exception(' || TO_CHAR( p_retcode ) || ')';
       END CASE;

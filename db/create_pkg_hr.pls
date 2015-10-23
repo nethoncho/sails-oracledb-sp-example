@@ -136,6 +136,18 @@ IS
    --
    -- dept
    --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- create a department
+   --
+   PROCEDURE departments_c(
+                              p_deptno    IN NUMBER,
+                              p_dname     IN VARCHAR2,
+                              p_loc       IN VARCHAR2,
+                              p_details IN OUT  hr_child.dept_details_refcur_t
+                          );
+   --
    -----------------------------------------------------------------------------------
    --
    -- Read details on all dept
@@ -153,6 +165,32 @@ IS
                              p_deptno    IN       NUMBER,
                              p_details          IN OUT  hr_child.dept_details_refcur_t
                           );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified department's name
+   --
+   PROCEDURE departments_u(
+                                    p_deptno  IN dept.deptno%TYPE,
+                                    p_dname   IN VARCHAR2
+                             );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified department's location
+   --
+   PROCEDURE departments_u(
+                                    p_deptno  IN dept.deptno%TYPE,
+                                    p_loc     IN VARCHAR2
+                             );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- destroy a specified department
+   --
+   PROCEDURE departments_d(
+                           p_deptno  IN dept.deptno%TYPE
+                        );
    --
 END;
 /

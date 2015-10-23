@@ -112,20 +112,58 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read all emp details
+   -- create a department
    --
-   PROCEDURE departments_r(
-                             p_details IN OUT  hr_child.dept_details_refcur_t
-                          );
+   PROCEDURE add_dept(
+                           p_deptno    IN NUMBER,
+                           p_dname     IN VARCHAR2,
+                           p_loc       IN VARCHAR2,
+                           p_details IN OUT  hr_child.dept_details_refcur_t
+                       );
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read details on a specified departments
+   -- Read all departments details
    --
-   PROCEDURE departments_r(
-                             p_deptno    IN       NUMBER,
-                             p_details          IN OUT  hr_child.dept_details_refcur_t
-                          );
+   PROCEDURE get_dept_details(
+                                   p_details IN OUT  hr_child.dept_details_refcur_t
+                             );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read details on a specified department
+   --
+   PROCEDURE get_dept_details(
+                                p_deptno    IN      NUMBER,
+                                p_details   IN OUT  hr_child.dept_details_refcur_t
+                             );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified department's name
+   --
+   PROCEDURE update_dept_name(
+                                    p_deptno  IN dept.deptno%TYPE,
+                                    p_name    IN VARCHAR2
+                             );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified department's location
+   --
+   PROCEDURE update_dept_loc(
+                                    p_deptno  IN dept.deptno%TYPE,
+                                    p_loc     IN VARCHAR2
+                             );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- destroy a specified department
+   --
+   PROCEDURE delete_dept(
+                           p_deptno  IN dept.deptno%TYPE
+                        );
+   --
 END;
 /
 

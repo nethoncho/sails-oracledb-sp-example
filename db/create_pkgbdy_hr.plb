@@ -174,19 +174,45 @@ IS
    -- destroy a specified employee
    --
    PROCEDURE employees_d(
-                             p_empno IN emp.empno%TYPE
-                          )
+                            p_empno IN emp.empno%TYPE
+                        )
    IS
    BEGIN
       --
       hr_child.delete_emp( p_empno );
-      --
       --
    END;
    --
    --===========================================================
    --
    -- dept
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- create a department
+   --
+   PROCEDURE departments_c(
+                              p_deptno    IN NUMBER,
+                              p_dname     IN VARCHAR2,
+                              p_loc       IN VARCHAR2,
+                              p_details IN OUT  hr_child.dept_details_refcur_t
+                          )
+   IS
+   BEGIN
+     --
+      DECLARE
+         v_cursor sys_refcursor;
+      BEGIN
+         hr_child.add_dept(
+                              p_deptno,
+                              p_dname,
+                              p_loc,
+                              v_cursor
+                           );
+         p_details := v_cursor;
+      END;
+      --
+   END;
    --
    -----------------------------------------------------------------------------------
    --
@@ -210,7 +236,7 @@ IS
    --
    PROCEDURE departments_r(
                              p_deptno    IN      NUMBER,
-                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                             p_details   IN OUT  hr_child.dept_details_refcur_t
                           )
    IS
    BEGIN
@@ -219,6 +245,55 @@ IS
          SELECT   *
          FROM     dept
          WHERE    deptno = p_deptno;
+   END;
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified department's name
+   --
+   PROCEDURE departments_u(
+                              p_deptno  IN dept.deptno%TYPE,
+                              p_dname   IN VARCHAR2
+                          )
+   IS
+   BEGIN
+      hr_child.update_dept_name(
+                                    p_deptno,
+                                    p_dname
+                                );
+      --
+   END;
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified department's location
+   --
+   PROCEDURE departments_u(
+                              p_deptno  IN dept.deptno%TYPE,
+                              p_loc     IN VARCHAR2
+                          )
+   IS
+   BEGIN
+      hr_child.update_dept_loc(
+                                 p_deptno,
+                                 p_loc
+                              );
+      --
+   END;
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- destroy a specified department
+   --
+   PROCEDURE departments_d(
+                              p_deptno  IN dept.deptno%TYPE
+                           )
+   IS
+   BEGIN
+      hr_child.delete_dept(
+                              p_deptno
+                          );
+      --
    END;
    --
 END;
