@@ -37,6 +37,10 @@ module.exports.routes = {
   'POST   /api/employee':      'Employee.create',
   'PUT    /api/employee/:id':  'Employee.update',
   'DELETE /api/employee/:id':  'Employee.destroy',
+  'GET    /api/department/:id?': 'Department.find',
+  'POST   /api/department':      'Department.create',
+  'PUT    /api/department/:id':  'Department.update',
+  'DELETE /api/department/:id':  'Department.destroy',
   '/': { view: 'app' }
 
   /***************************************************************************
