@@ -1,7 +1,7 @@
 /**
- * EmployeesController
+ * EmployeeController
  *
- * @description :: Server-side logic for managing employees
+ * @description :: Server-side logic for managing employee
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
@@ -22,18 +22,18 @@ module.exports = {
       params = null;
     }
 
-    Employees.find(params, function(err, employeess) {
+    Employee.find(params, function(err, employees) {
       if (err) return res.negotiate(err);
       if(req.isSocket) {
-        Employees.subscribe(req, _.pluck(employeess, 'id'));
+        Employee.subscribe(req, _.pluck(employees, 'id'));
       }
-      res.json(employeess);
+      res.json(employees);
     });
   },
 
   create: function(req, res) {
     var allParams = req.allParams();
-    Employees.create(allParams, function(err, employee) {
+    Employee.create(allParams, function(err, employee) {
       if (err) return res.negotiate(err);
       res.json(employee);
     });

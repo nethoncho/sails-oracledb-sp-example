@@ -2,12 +2,12 @@
 
 angular.module('exampleApp').controller('employeesCtrl', ['$scope', '$sailsBind', '$q', '$http', 'toastr',
   function ($scope, $sailsBind, $q, $http, toastr) {
-    $sailsBind.bind('api/employees', $scope);
+    $sailsBind.bind('api/employee', $scope);
 
     $scope.updateSalary = function(employee, data) {
       var d = $q.defer();
 
-       $http.put('api/employees/' + employee.id, {
+       $http.put('api/employee/' + employee.id, {
          salary: data
        })
        .success(function(response) {
