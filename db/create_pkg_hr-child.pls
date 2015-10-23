@@ -22,9 +22,13 @@ IS
    value_too_large                 EXCEPTION;
    PRAGMA EXCEPTION_INIT(  value_too_large, -20011 );
    --
-   ec_martians_landed              CONSTANT NUMBER          := 20012;
+   ec_text_too_long              CONSTANT NUMBER          := 20012;
+   text_too_long                 EXCEPTION;
+   PRAGMA EXCEPTION_INIT(  text_too_long, -20012 );
+   --
+   ec_martians_landed              CONSTANT NUMBER          := 20013;
    martians_landed                 EXCEPTION;
-   PRAGMA EXCEPTION_INIT(  martians_landed, -20012 );
+   PRAGMA EXCEPTION_INIT(  martians_landed, -20013 );
    --
    ec_undefined_failure            CONSTANT NUMBER := 20014;
    --
@@ -34,6 +38,9 @@ IS
    --
    exceeded_specified_precision  EXCEPTION;
    PRAGMA EXCEPTION_INIT(  exceeded_specified_precision, -1438 );
+   -- ORA-12899: value too large for column
+   val_too_long_for_col  EXCEPTION;
+   PRAGMA EXCEPTION_INIT(  val_too_long_for_col, -12899 );
    --
    FUNCTION msg ( p_retcode   IN NUMBER) RETURN VARCHAR2;
    --

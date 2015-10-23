@@ -20,9 +20,14 @@ Download the [Oracle 12c OVA](http://www.oracle.com/technetwork/database/enterpr
 
 After the VM is launched then it needs a bit of configuration.
 
-Enable the Oracle 12c's VM's bidirectional clipboard. In the VM's menu: Devices->shared clipboard->bidirectional.
+Enable the Oracle 12c's VM's bidirectional clipboard.
 
-Set the VM's memory for 3GB. Set the VM's memory for 3GB. In the VM's menu: Machine->settings->system and configure for 3GB of memory.
+In the VM's menu: Devices->shared clipboard->bidirectional.
+
+Set the VM's memory for 3GB. Set the VM's memory for 3GB.
+
+In the VM's menu: Machine->settings->system and configure for 3GB of memory.
+
 Database Information:
 * Oracle SID    : cdb1
 * Pluggable DB  : orcl
@@ -38,7 +43,7 @@ $sudo su -
 # tar xzf node-v0.12.7-linux-x64.tar.gz
 # cd node-v0.12.7-linux-x64
 ```
-We install Node.js in /usr/local directory. Use following command to copy the files to appropriate sub-directotories in /usr/local:
+Node.js is installed in /usr/local directory. The following command copies the files to the correct sub-directotories in /usr/local:
 ```ada
 #for dir in bin include lib share; do cp -par ${dir}/* /usr/local/${dir}/; done
 ```
@@ -59,12 +64,12 @@ Now install npm
 The Oracle VM comes with FireFox preinstalled.
 
 
-# Download both the Oracle Instant Client 'Basic' and Oracle Instant Client 'SDK' RPMs
+## Download both the Oracle Instant Client 'Basic' and Oracle Instant Client 'SDK' RPMs
 
-[Oracle Instant Client 'Basic' and Oracle Instant Client 'SDK' RPMs](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html#ic_x64_inst "download Instant Client RPMs")
+[Download Oracle Instant Client 'Basic' and Oracle Instant Client 'SDK' RPMs](http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html#ic_x64_inst "download Instant Client RPMs")
 
-copy the downloaded rpms to /home/oracle/rpms and then install the packages as root
-```javascript
+After the download has completed then copy the downloaded rpms to /home/oracle/rpms and then install the packages as root
+```ada
 $mkdir /home/oracle/rpms
 $mv /home/oracle/Downloads/*.rpm /home/oracle/rpms
 $sudo su -

@@ -114,9 +114,6 @@ IS
          WHEN negative_salary
          THEN
             RAISE;
-         WHEN exceeded_specified_precision
-         THEN
-            RAISE value_too_large;
       END;
    BEGIN
       --
@@ -128,6 +125,10 @@ IS
       --
       COMMIT WORK;
       --
+   EXCEPTION
+      WHEN exceeded_specified_precision
+      THEN
+         RAISE value_too_large;
    END;
    --
    -----------------------------------------------------------------------------------
@@ -256,6 +257,10 @@ IS
       --
       COMMIT WORK;
       --
+   EXCEPTION
+      WHEN val_too_long_for_col
+      THEN
+         RAISE text_too_long;
    END;
    --
    --
@@ -277,6 +282,10 @@ IS
       --
       COMMIT WORK;
       --
+   EXCEPTION
+      WHEN val_too_long_for_col
+      THEN
+         RAISE text_too_long;
    END;
    --
    --
@@ -315,7 +324,8 @@ IS
       CASE  p_retcode
          WHEN ec_success             THEN retval := 'operation succeeded';
          WHEN ec_negative_salary     THEN retval := 'salary cannot be negative';
-         WHEN ec_value_too_large     THEN retval := 'value too large for this field or text too long for this field';
+         WHEN ec_value_too_large     THEN retval := 'value too large for this field';
+         WHEN ec_text_too_long       THEN retval := 'text too long for this field';
          WHEN ec_martians_landed     THEN retval := 'Martians Landed!  THIS IS NOT A DRILL!';
       ELSE
          retval := 'internal error: routine likely encountered unexpected exception(' || TO_CHAR( p_retcode ) || ')';
