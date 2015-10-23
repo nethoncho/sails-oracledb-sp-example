@@ -14,23 +14,22 @@ module.exports = {
   autoUpdatedAt: false,
 
   attributes: {
-    DEPARTMENT_ID: {
+    id: {
+      columnName: 'DEPTNO',
       type: 'integer',
       autoIncrement: true,
       primaryKey: true,
       unique: true
     },
-    DEPARTMENT_NAME: {
+    name: {
+      columnName: 'DNAME',
       type: 'string',
       required: true
     },
-    MANAGER_ID: {
-      type: 'integer',
-      required: false
-    },
-    LOCATION_ID: {
-      type: 'integer',
-      required: false
+    location: {
+      columnName: 'LOC',
+      type: 'string',
+      required: true
     }
   }
 };
