@@ -91,8 +91,6 @@ sudo su -
 exit
 ```
 
-[text](http://www.oracle.com/ "title")
-
 ## Installation
 
 ```bash
@@ -141,12 +139,14 @@ $ cd ..
 
 ## Run the application
 
+launch Sails:
+
 ```bash
 $ cd ~/sails-oracledb-sp-example
 $ sails lift
 ```
 
-Point your browser to http://localhost:1337/#/employees
+Point your browser to http://localhost:1337/#/employees to start UI
 
 #### License
 
