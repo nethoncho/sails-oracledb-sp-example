@@ -37,7 +37,7 @@ $sudo su -
 # cd node-v0.12.7-linux-x64
 ```
 We install Node.js in /usr/local directory. Use following command to copy the files to appropriate sub-directotories in /usr/local:
-```javascript
+```ada
 #for dir in bin include lib share; do cp -par ${dir}/* /usr/local/${dir}/; done
 ```
 To verify version of node and npm, type:
