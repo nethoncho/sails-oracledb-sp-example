@@ -5,50 +5,20 @@ CREATE OR REPLACE
 PACKAGE BODY hr
 IS
    --
-   --==================================================================
-   --
-   -- return_codes_r()
-   --
-   --    obtains list of error messages for various user-defined Oracle Exceptions.
-   --
-   PROCEDURE return_codes_r( p_details     IN OUT   SYS_REFCURSOR )
-   IS
-      --
-      retcode_details_tab   retcode_nt := retcode_nt();
-      --
-   BEGIN
-      FOR v_retcode IN hr_child.ec_negative_salary .. hr_child.ec_undefined_failure
-      LOOP
-         BEGIN
-            retcode_details_tab.EXTEND();
-            retcode_details_tab(retcode_details_tab.LAST) := retcode_obj_t(
-                                                                              v_retcode,
-                                                                              hr_child.msg ( v_retcode )
-                                                                          );
-         END;
-      END LOOP;
-      --
-      OPEN p_details FOR
-         SELECT *
-         FROM TABLE(cast(retcode_details_tab AS retcode_nt));
-      --
-   END;
-   --
-   --
    -----------------------------------------------------------------------------------
    --
    -- create an employee
    --
    PROCEDURE employees_c(
-                           p_empno        IN NUMBER,
-                           p_ename        IN VARCHAR2,
-                           p_job          IN VARCHAR2,
-                           p_mgr          IN VARCHAR2,
-                           p_hiredate     IN VARCHAR2,
-                           p_sal          IN NUMBER,
-                           p_comm         IN NUMBER,
-                           p_deptno       IN NUMBER,
-                           p_details      IN OUT hr_child.empl_details_refcur_t
+                           p_empno      IN     NUMBER,
+                           p_ename      IN     VARCHAR2,
+                           p_job        IN     VARCHAR2,
+                           p_mgr        IN     NUMBER,
+                           p_hiredate   IN     VARCHAR2,
+                           p_sal        IN     NUMBER,
+                           p_comm       IN     NUMBER,
+                           p_deptno     IN     NUMBER,
+                           p_details    IN OUT hr_child.empl_details_refcur_t
                         )
    IS
    BEGIN
@@ -74,11 +44,11 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read all employee details
+   -- obtain details for all employees
    --
    PROCEDURE employees_r(
-                             p_details    IN OUT  hr_child.empl_details_refcur_t
-                          )
+                           p_details IN OUT hr_child.empl_details_refcur_t
+                        )
    IS
    BEGIN
       --
@@ -92,7 +62,7 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read a specified employee's details
+   -- Read a specific employee's details
    --
    PROCEDURE employees_r(
                              p_empno      IN      emp.empno%TYPE,
@@ -112,11 +82,11 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read a specified employee's details
+   -- Read the details for all of the employees in a specified department
    --
    PROCEDURE employees_r(
                              p_deptno    IN      dept.deptno%TYPE,
-                             p_details          IN OUT  hr_child.empl_details_refcur_t
+                             p_details   IN OUT  hr_child.empl_details_refcur_t
                           )
    IS
    BEGIN
@@ -132,7 +102,7 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- update a specified employee's salary
+   -- update a specific employee's salary
    --
    PROCEDURE employees_u(
                            p_empno  IN emp.empno%TYPE,
@@ -156,15 +126,15 @@ IS
    -- transfer employee to another department
    --
    PROCEDURE employees_u(
-                           p_empno    IN       emp.empno%TYPE,
-                           p_deptno   IN       emp.deptno%TYPE
+                           p_empno    IN  emp.empno%TYPE,
+                           p_deptno   IN  emp.deptno%TYPE
                         )
    IS
    BEGIN
       hr_child.xver_employees(
-                                    p_empno,
-                                    p_deptno
-                                );
+                                p_empno,
+                                p_deptno
+                             );
       --
    END;
    --
@@ -192,10 +162,10 @@ IS
    -- create a department
    --
    PROCEDURE departments_c(
-                              p_deptno    IN NUMBER,
-                              p_dname     IN VARCHAR2,
-                              p_loc       IN VARCHAR2,
-                              p_details IN OUT  hr_child.dept_details_refcur_t
+                              p_deptno   IN      NUMBER,
+                              p_dname    IN      VARCHAR2,
+                              p_loc      IN      VARCHAR2,
+                              p_details  IN OUT  hr_child.dept_details_refcur_t
                           )
    IS
    BEGIN
@@ -295,6 +265,53 @@ IS
                           );
       --
    END;
+   --
+   --==================================================================
+   --
+   -- return_codes_r()
+   --
+   --    obtains list of error messages for various user-defined Oracle Exceptions.
+   --
+   PROCEDURE return_codes_r( p_details  IN OUT SYS_REFCURSOR )
+   IS
+      --
+      retcode_details_tab   retcode_nt := retcode_nt();
+      --
+   BEGIN
+      --
+      -- build up a nested table containing both
+      -- return codes for all messages and
+      -- message text for all messages
+      --
+      FOR v_retcode IN hr_child.ec_negative_salary .. hr_child.ec_undefined_failure
+      LOOP
+         BEGIN
+            retcode_details_tab.EXTEND();
+            retcode_details_tab(retcode_details_tab.LAST) := retcode_obj_t(
+                                                                              v_retcode,
+                                                                              hr_child.msg ( v_retcode )
+                                                                          );
+         END;
+      END LOOP;
+      --
+      -- select the contents of the nested table into the resultset
+      --
+      OPEN p_details FOR
+         SELECT *
+         FROM TABLE(cast(retcode_details_tab AS retcode_nt));
+      --
+   END;
+   --
+   --==========================================================
+   --
+   -- reset database back to devault data (housekeeping)
+   --
+   PROCEDURE housekeeping_d
+   IS
+   BEGIN
+      hr_child.housekeeping_d;
+   END;
+   --
    --
 END;
 /

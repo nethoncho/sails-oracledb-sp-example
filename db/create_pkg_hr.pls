@@ -56,8 +56,6 @@ CREATE OR REPLACE
 PACKAGE hr
 IS
    --
-   PROCEDURE return_codes_r( p_details     IN OUT   SYS_REFCURSOR );
-   --
    --===========================================================
    --
    -- emp
@@ -70,7 +68,7 @@ IS
                            p_empno        IN NUMBER,
                            p_ename        IN VARCHAR2,
                            p_job          IN VARCHAR2,
-                           p_mgr          IN VARCHAR2,
+                           p_mgr          IN NUMBER,
                            p_hiredate     IN VARCHAR2,
                            p_sal          IN NUMBER,
                            p_comm         IN NUMBER,
@@ -79,7 +77,7 @@ IS
                         );
    -----------------------------------------------------------------------------------
    --
-   -- Read all emp' details
+   -- obtain details for all employees
    --
    PROCEDURE employees_r(
                              p_details    IN OUT  hr_child.empl_details_refcur_t
@@ -88,7 +86,7 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read a specified employee's details
+   -- Read a specific employee's details
    --
    PROCEDURE employees_r(
                              p_empno      IN      emp.empno%TYPE,
@@ -98,7 +96,7 @@ IS
       --
    -----------------------------------------------------------------------------------
    --
-   -- Read a specified employee's details
+   -- Read the details for all of the employees in a specified department
    --
    PROCEDURE employees_r(
                              p_deptno    IN      dept.deptno%TYPE,
@@ -107,7 +105,7 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- update a specified employee's salary
+   -- update a specific employee's salary
    --
    PROCEDURE employees_u(
                            p_empno  IN emp.empno%TYPE,
@@ -120,8 +118,8 @@ IS
    -- transfer employee to another department
    --
    PROCEDURE employees_u(
-                           p_empno     IN       emp.empno%TYPE,
-                           p_deptno    IN       emp.deptno%TYPE
+                           p_empno    IN emp.empno%TYPE,
+                           p_deptno   IN emp.deptno%TYPE
                         );
    --
    -----------------------------------------------------------------------------------
@@ -129,8 +127,8 @@ IS
    -- destroy a specified employee
    --
    PROCEDURE employees_d(
-                             p_empno      IN      emp.empno%TYPE
-                          );
+                            p_empno IN emp.empno%TYPE
+                        );
    --
    --===========================================================
    --
@@ -142,10 +140,10 @@ IS
    -- create a department
    --
    PROCEDURE departments_c(
-                              p_deptno    IN NUMBER,
-                              p_dname     IN VARCHAR2,
-                              p_loc       IN VARCHAR2,
-                              p_details IN OUT  hr_child.dept_details_refcur_t
+                              p_deptno   IN      NUMBER,
+                              p_dname    IN      VARCHAR2,
+                              p_loc      IN      VARCHAR2,
+                              p_details  IN OUT  hr_child.dept_details_refcur_t
                           );
    --
    -----------------------------------------------------------------------------------
@@ -153,7 +151,7 @@ IS
    -- Read details on all dept
    --
    PROCEDURE departments_r(
-                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                             p_details  IN OUT  hr_child.dept_details_refcur_t
                           );
    --
    --
@@ -162,8 +160,8 @@ IS
    -- Read details on a specified dept
    --
    PROCEDURE departments_r(
-                             p_deptno    IN       NUMBER,
-                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                             p_deptno    IN      NUMBER,
+                             p_details   IN OUT  hr_child.dept_details_refcur_t
                           );
    --
    -----------------------------------------------------------------------------------
@@ -171,26 +169,40 @@ IS
    -- update a specified department's name
    --
    PROCEDURE departments_u(
-                                    p_deptno  IN dept.deptno%TYPE,
-                                    p_dname   IN VARCHAR2
-                             );
+                             p_deptno  IN dept.deptno%TYPE,
+                             p_dname   IN VARCHAR2
+                          );
    --
    -----------------------------------------------------------------------------------
    --
    -- update a specified department's location
    --
    PROCEDURE departments_u(
-                                    p_deptno  IN dept.deptno%TYPE,
-                                    p_loc     IN VARCHAR2
-                             );
+                             p_deptno  IN dept.deptno%TYPE,
+                             p_loc     IN VARCHAR2
+                          );
    --
    -----------------------------------------------------------------------------------
    --
    -- destroy a specified department
    --
    PROCEDURE departments_d(
-                           p_deptno  IN dept.deptno%TYPE
-                        );
+                              p_deptno  IN dept.deptno%TYPE
+                          );
+   --
+   --===========================================================
+   --
+   -- return_codes_r()
+   --
+   -- return resultset comprised of all exception error messages
+   --
+   PROCEDURE return_codes_r( p_details  IN OUT SYS_REFCURSOR );
+   --
+   --==========================================================
+   --
+   -- reset database back to devault data (housekeeping)
+   --
+   PROCEDURE housekeeping_d;
    --
 END;
 /
