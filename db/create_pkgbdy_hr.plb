@@ -43,7 +43,7 @@ IS
                            p_empno        IN NUMBER,
                            p_ename        IN VARCHAR2,
                            p_job          IN VARCHAR2,
-                           p_mgr          IN VARCHAR2,
+                           p_mgr          IN NUMBER,
                            p_hiredate     IN VARCHAR2,
                            p_sal          IN NUMBER,
                            p_comm         IN NUMBER,

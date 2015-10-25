@@ -61,9 +61,9 @@ IS
                            p_empno        IN NUMBER,
                            p_ename        IN VARCHAR2,
                            p_job          IN VARCHAR2,
-                           p_mgr          IN VARCHAR2,
+                           p_mgr          IN NUMBER,
                            p_hiredate     IN VARCHAR2,
-                           p_sal          IN VARCHAR2,
+                           p_sal          IN NUMBER,
                            p_comm         IN NUMBER,
                            p_deptno       IN NUMBER,
                            p_details      IN OUT empl_details_refcur_t
@@ -170,6 +170,12 @@ IS
    PROCEDURE delete_dept(
                            p_deptno  IN dept.deptno%TYPE
                         );
+   --
+   --=============================================================================
+   --
+   -- housekeeping.  Reset the employee and department tables back to default data
+   --
+   PROCEDURE housekeeping_d;
    --
 END;
 /
