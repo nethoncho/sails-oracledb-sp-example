@@ -296,6 +296,17 @@ IS
       --
    END;
    --
+   --==========================================================
+   --
+   -- reset database back to devault data (housekeeping)
+   --
+   PROCEDURE housekeeping_d
+   IS
+   BEGIN
+      hr_child.housekeeping_d;
+   END;
+   --
+   --
 END;
 /
 
