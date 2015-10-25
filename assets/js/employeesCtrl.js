@@ -2,7 +2,6 @@
 
 angular.module('exampleApp').controller('employeesCtrl', ['$scope', '$sailsBind', '$q', '$http',
   function ($scope, $sailsBind, $q, $http ) {
-    $scope.departments = departments;
     $sailsBind.bind('api/employee', $scope);
     $sailsBind.bind('api/department', $scope);
 

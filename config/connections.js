@@ -28,7 +28,7 @@ module.exports.connections = {
     package: 'HR',
     findCustomExceptions: 'RETURN_CODES_R',
     cursorName: 'DETAILS',
-    connectString: 'localhost/orcl'
+    connectString: 'localhost/XE'
   }
 
 };
