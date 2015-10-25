@@ -4,6 +4,7 @@ angular.module('exampleApp').controller('employeesCtrl', ['$scope', '$sailsBind'
   function ($scope, $sailsBind, $q, $http, departments) {
     $scope.departments = departments;
     $sailsBind.bind('api/employee', $scope);
+    $sailsBind.bind('api/department', $scope);
 
     $scope.showDepartment = function(employee) {
       return _.result(_.find($scope.departments, { id: employee.department }), 'name');
