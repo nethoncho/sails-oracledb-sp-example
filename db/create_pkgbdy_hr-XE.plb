@@ -10,18 +10,15 @@ IS
    -- create an employee
    --
    PROCEDURE employees_c(
-                            p_employee_id    IN     NUMBER,
-                            p_first_name     IN       VARCHAR2,
-                            p_last_name      IN       VARCHAR2,
-                            p_email          IN       VARCHAR2,
-                            p_phone_number   IN       VARCHAR2,
-                            p_hire_date      IN       VARCHAR2,
-                            p_job_id         IN       VARCHAR2,
-                            p_salary         IN       NUMBER,
-                            p_commission_pct IN       NUMBER,
-                            p_manager_id     IN       NUMBER,
-                            p_department_id  IN       NUMBER,
-                            p_details        IN OUT   hr_child.empl_details_refcur_t
+                           p_empno      IN     NUMBER,
+                           p_ename      IN     VARCHAR2,
+                           p_job        IN     VARCHAR2,
+                           p_mgr        IN     NUMBER,
+                           p_hiredate   IN     VARCHAR2,
+                           p_sal        IN     NUMBER,
+                           p_comm       IN     NUMBER,
+                           p_deptno     IN     NUMBER,
+                           p_details    IN OUT hr_child.empl_details_refcur_t
                         )
    IS
    BEGIN
@@ -30,18 +27,15 @@ IS
          v_cursor sys_refcursor;
       BEGIN
          hr_child.create_emp(
-                                  p_employee_id,
-                                  p_first_name,
-                                  p_last_name,
-                                  p_email,
-                                  p_phone_number,
-                                  p_hire_date,
-                                  p_job_id,
-                                  p_salary,
-                                  p_commission_pct,
-                                  p_manager_id,
-                                  p_department_id,
-                                  v_cursor
+                                 p_empno,
+                                 p_ename,
+                                 p_job,
+                                 p_mgr,
+                                 p_hiredate,
+                                 p_sal,
+                                 p_comm,
+                                 p_deptno,
+                                 v_cursor
                               );
          p_details := v_cursor;
       END;
@@ -60,7 +54,7 @@ IS
       --
       OPEN p_details FOR
          SELECT *
-         FROM   employees;
+         FROM   emp;
       --
       --
    END;
@@ -71,16 +65,16 @@ IS
    -- Read a specific employee's details
    --
    PROCEDURE employees_r(
-                             p_employee_id   IN      employees.employee_id%TYPE,
-                             p_details       IN OUT  hr_child.empl_details_refcur_t
+                             p_empno      IN      emp.empno%TYPE,
+                             p_details    IN OUT  hr_child.empl_details_refcur_t
                           )
    IS
    BEGIN
       --
       OPEN p_details FOR
          SELECT   *
-         FROM     employees
-         WHERE    employee_id = p_employee_id;
+         FROM     emp
+         WHERE    empno = p_empno;
       --
       --
    END;
@@ -91,16 +85,16 @@ IS
    -- Read the details for all of the employees in a specified department
    --
    PROCEDURE employees_r(
-                             p_department_id    IN      departments.department_id%TYPE,
-                             p_details          IN OUT  hr_child.empl_details_refcur_t
+                             p_deptno    IN      dept.deptno%TYPE,
+                             p_details   IN OUT  hr_child.empl_details_refcur_t
                           )
    IS
    BEGIN
       --
       OPEN p_details FOR
          SELECT   *
-         FROM     employees
-         WHERE    department_id = p_department_id;
+         FROM     emp
+         WHERE    deptno = p_deptno;
       --
       --
    END;
@@ -111,14 +105,14 @@ IS
    -- update a specific employee's salary
    --
    PROCEDURE employees_u(
-                           p_employee_id  IN employees.employee_id%TYPE,
-                           p_salary       IN NUMBER
+                           p_empno  IN emp.empno%TYPE,
+                           p_sal    IN NUMBER
                         )
    IS
    BEGIN
       hr_child.update_emp_salary(
-                                    p_employee_id,
-                                    p_salary
+                                    p_empno,
+                                    p_sal
                                 );
       --
    EXCEPTION
@@ -132,14 +126,14 @@ IS
    -- transfer employee to another department
    --
    PROCEDURE employees_u(
-                           p_employee_id     IN  employees.employee_id%TYPE,
-                           p_department_id   IN  employees.department_id%TYPE
+                           p_empno    IN  emp.empno%TYPE,
+                           p_deptno   IN  emp.deptno%TYPE
                         )
    IS
    BEGIN
       hr_child.xver_employees(
-                                p_employee_id,
-                                p_department_id
+                                p_empno,
+                                p_deptno
                              );
       --
    END;
@@ -150,29 +144,28 @@ IS
    -- destroy a specified employee
    --
    PROCEDURE employees_d(
-                            p_employee_id IN employees.employee_id%TYPE
+                            p_empno IN emp.empno%TYPE
                         )
    IS
    BEGIN
       --
-      hr_child.delete_emp( p_employee_id );
+      hr_child.delete_emp( p_empno );
       --
    END;
    --
    --===========================================================
    --
-   -- departments
+   -- dept
    --
    -----------------------------------------------------------------------------------
    --
    -- create a department
    --
    PROCEDURE departments_c(
-                              p_department_id    IN      NUMBER,
-                              p_dname            IN      VARCHAR2,
-                              p_location_id      IN      NUMBER,
-                              p_mgr_id           IN      NUMBER,
-                              p_details          IN OUT  hr_child.dept_details_refcur_t
+                              p_deptno   IN      NUMBER,
+                              p_dname    IN      VARCHAR2,
+                              p_loc      IN      VARCHAR2,
+                              p_details  IN OUT  hr_child.dept_details_refcur_t
                           )
    IS
    BEGIN
@@ -181,11 +174,10 @@ IS
          v_cursor sys_refcursor;
       BEGIN
          hr_child.add_dept(
-                              p_department_id => p_department_id,
-                              p_dname         => p_dname,
-                              p_location_id   => p_location_id,
-                              p_mgr_id        => p_mgr_id,
-                              p_details       => v_cursor
+                              p_deptno,
+                              p_dname,
+                              p_loc,
+                              v_cursor
                            );
          p_details := v_cursor;
       END;
@@ -194,7 +186,7 @@ IS
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read all employees details
+   -- Read all emp details
    --
    PROCEDURE departments_r(
                              p_details IN OUT  hr_child.dept_details_refcur_t
@@ -204,25 +196,25 @@ IS
       --
       OPEN p_details FOR
          SELECT   *
-         FROM     departments;
+         FROM     dept;
    END;
    --
    --
    -----------------------------------------------------------------------------------
    --
-   -- Read details on a specified departments
+   -- Read details on a specified dept
    --
    PROCEDURE departments_r(
-                             p_department_id    IN      NUMBER,
-                             p_details          IN OUT  hr_child.dept_details_refcur_t
+                             p_deptno    IN      NUMBER,
+                             p_details   IN OUT  hr_child.dept_details_refcur_t
                           )
    IS
    BEGIN
       --
       OPEN p_details FOR
          SELECT   *
-         FROM     departments
-         WHERE    department_id = p_department_id;
+         FROM     dept
+         WHERE    deptno = p_deptno;
    END;
    --
    -----------------------------------------------------------------------------------
@@ -230,13 +222,13 @@ IS
    -- update a specified department's name
    --
    PROCEDURE departments_u(
-                              p_department_id   IN departments.department_id%TYPE,
-                              p_dname           IN VARCHAR2
+                              p_deptno  IN dept.deptno%TYPE,
+                              p_dname   IN VARCHAR2
                           )
    IS
    BEGIN
       hr_child.update_dept_name(
-                                    p_department_id,
+                                    p_deptno,
                                     p_dname
                                 );
       --
@@ -247,13 +239,13 @@ IS
    -- update a specified department's location
    --
    PROCEDURE departments_u(
-                              p_department_id  IN departments.department_id%TYPE,
+                              p_deptno  IN dept.deptno%TYPE,
                               p_loc     IN VARCHAR2
                           )
    IS
    BEGIN
       hr_child.update_dept_loc(
-                                 p_department_id,
+                                 p_deptno,
                                  p_loc
                               );
       --
@@ -264,12 +256,12 @@ IS
    -- destroy a specified department
    --
    PROCEDURE departments_d(
-                              p_department_id  IN departments.department_id%TYPE
+                              p_deptno  IN dept.deptno%TYPE
                            )
    IS
    BEGIN
       hr_child.delete_dept(
-                              p_department_id
+                              p_deptno
                           );
       --
    END;

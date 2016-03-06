@@ -55,32 +55,29 @@ IS
    --
    -- refcursors
    --
-   TYPE empl_details_refcur_t IS REF CURSOR RETURN employees%ROWTYPE;
-   TYPE dept_details_refcur_t IS REF CURSOR RETURN departments%ROWTYPE;
+   TYPE empl_details_refcur_t IS REF CURSOR RETURN emp%ROWTYPE;
+   TYPE dept_details_refcur_t IS REF CURSOR RETURN dept%ROWTYPE;
    --
    --===========================================================
    --
-   -- employees
+   -- emp
    --
-   -- CRUD procedures for the employees table
+   -- CRUD procedures for the emp table
    --
    -----------------------------------------------------------------------------------
    --
    -- create an employee
    --
    PROCEDURE create_emp(
-                           p_emp_id          IN     NUMBER,
-                           p_first_name      IN     VARCHAR2,
-                           p_last_name       IN     VARCHAR2,
-                           p_email           IN     VARCHAR2,
-                           p_phone_number    IN     VARCHAR2,
-                           p_hiredate        IN     VARCHAR2,
-                           p_job_id          IN     VARCHAR2,
-                           p_sal             IN     NUMBER,
-                           p_comm_pct        IN     NUMBER,
-                           p_mgr_id          IN     NUMBER,
-                           p_department_id   IN     NUMBER,
-                           p_details         IN OUT empl_details_refcur_t
+                           p_empno      IN     NUMBER,
+                           p_ename      IN     VARCHAR2,
+                           p_job        IN     VARCHAR2,
+                           p_mgr        IN     NUMBER,
+                           p_hiredate   IN     VARCHAR2,
+                           p_sal        IN     NUMBER,
+                           p_comm       IN     NUMBER,
+                           p_deptno     IN     NUMBER,
+                           p_details    IN OUT empl_details_refcur_t
                         );
    -----------------------------------------------------------------------------------
    --
@@ -96,7 +93,7 @@ IS
    -- obtain a specific employee's details
    --
    PROCEDURE get_employee_details(
-                                      p_emp_id    IN      employees.employee_id%TYPE,
+                                      p_empno     IN      emp.empno%TYPE,
                                       p_details   IN OUT  empl_details_refcur_t
                                    );
    --
@@ -105,8 +102,8 @@ IS
    -- update a specific employee's salary
    --
    PROCEDURE update_emp_salary(
-                                 p_emp_id  IN employees.employee_id%TYPE,
-                                 p_sal     IN NUMBER
+                                 p_empno  IN emp.empno%TYPE,
+                                 p_sal    IN NUMBER
                               );
    --
    --
@@ -115,33 +112,32 @@ IS
    -- transfer employee to another department
    --
    PROCEDURE xver_employees(
-                                 p_emp_id          IN employees.employee_id%TYPE,
-                                 p_department_id   IN employees.department_id%TYPE
+                                 p_empno   IN emp.empno%TYPE,
+                                 p_deptno  IN emp.deptno%TYPE
                            );
    -----------------------------------------------------------------------------------
    --
    -- destroy a specific employee
    --
    PROCEDURE delete_emp(
-                          p_emp_id  IN employees.employee_id%TYPE
+                          p_empno  IN emp.empno%TYPE
                        );
    --
    --===========================================================
    --
    -- departments
    --
-   -- CRUD procedures for the departments table
+   -- CRUD procedures for the dept table
    --
    -----------------------------------------------------------------------------------
    --
    -- create a department
    --
    PROCEDURE add_dept(
-                           p_department_id    IN      NUMBER,
-                           p_dname            IN      VARCHAR2,
-                           p_location_id      IN      NUMBER,
-                           p_mgr_id           IN      NUMBER,
-                           p_details          IN OUT  hr_child.dept_details_refcur_t
+                           p_deptno    IN      NUMBER,
+                           p_dname     IN      VARCHAR2,
+                           p_loc       IN      VARCHAR2,
+                           p_details   IN OUT  hr_child.dept_details_refcur_t
                        );
    --
    -----------------------------------------------------------------------------------
@@ -157,8 +153,8 @@ IS
    -- obtain details on a specific department
    --
    PROCEDURE get_dept_details(
-                                p_department_id    IN      departments.department_id%TYPE,
-                                p_details          IN OUT  hr_child.dept_details_refcur_t
+                                p_deptno    IN      NUMBER,
+                                p_details   IN OUT  hr_child.dept_details_refcur_t
                              );
    --
    -----------------------------------------------------------------------------------
@@ -166,8 +162,8 @@ IS
    -- update a specific department's name
    --
    PROCEDURE update_dept_name(
-                                p_department_id  IN departments.department_id%TYPE,
-                                p_name           IN VARCHAR2
+                                p_deptno  IN dept.deptno%TYPE,
+                                p_name    IN VARCHAR2
                              );
    --
    -----------------------------------------------------------------------------------
@@ -175,8 +171,8 @@ IS
    -- update a specific department's location
    --
    PROCEDURE update_dept_loc(
-                                p_department_id    IN departments.department_id%TYPE,
-                                p_location_id      IN NUMBER
+                                p_deptno  IN dept.deptno%TYPE,
+                                p_loc     IN VARCHAR2
                              );
    --
    -----------------------------------------------------------------------------------
@@ -184,7 +180,7 @@ IS
    -- destroy a specific department
    --
    PROCEDURE delete_dept(
-                           p_department_id  IN departments.department_id%TYPE
+                           p_deptno  IN dept.deptno%TYPE
                         );
    --
    --===============================================================
