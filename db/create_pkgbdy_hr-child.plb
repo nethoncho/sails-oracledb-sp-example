@@ -331,7 +331,7 @@ IS
       --
       CASE  p_retcode
          WHEN ec_success             THEN retval := 'operation succeeded';
-         WHEN ec_negative_salary     THEN retval := 'salary cannot be negative';
+         WHEN ec_negative_salary     THEN retval := 'salary cannot be zero or negative';
          WHEN ec_value_too_large     THEN retval := 'value too large for this field';
          WHEN ec_text_too_long       THEN retval := 'text too long for this field';
          WHEN ec_martians_landed     THEN retval := 'Martians Landed!  THIS IS NOT A DRILL!';
