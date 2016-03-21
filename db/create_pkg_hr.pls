@@ -96,7 +96,7 @@ IS
                              p_details          IN OUT  hr_child.empl_details_refcur_t
                           );
    --
-      --
+   --
    -----------------------------------------------------------------------------------
    --
    -- Read the details for all of the employees in a specified department

@@ -115,7 +115,7 @@ IS
                              )
       IS
       BEGIN
-         IF p_sal < 0
+         IF p_sal <= 0
          THEN
             RAISE negative_salary;
          END IF;
