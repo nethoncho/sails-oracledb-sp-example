@@ -6,22 +6,22 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Job</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th class="hidden-xs">Hire Date</th>
         <th>Department</th>
         <th>Salary</th>
         <th>Commission</th>
-        <th>Manager</th>
+        <th>Manager ID</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="employee in employees" ng-animate="'animate'">
         <td>{{employee.id}}</td>
-        <td>{{employee.name}}</td>
-        <td>{{employee.job}}</td>
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.lastName}}</td>
         <td class="hidden-xs">{{employee.hireDate}}</td>
-        <td><a editable-select="employee.department" onbeforesave="updateDepartment(employee, $data)" e-ng-options="d.id as d.name for d in departments">{{ showDepartment(employee) || 'NULL' }}</a></td>
+        <td><a editable-select="employee.departmentId" onbeforesave="updateDepartment(employee, $data)" e-ng-options="d.id as d.name for d in departments">{{ showDepartment(employee) || 'NULL' }}</a></td>
         <td><a editable-number="employee.salary" onbeforesave="updateSalary(employee, $data)">{{employee.salary || 'NULL'}}</a></td>
         <td>{{employee.commission}}</td>
         <td>{{employee.managerId}}</td>

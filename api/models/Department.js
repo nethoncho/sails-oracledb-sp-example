@@ -15,19 +15,24 @@ module.exports = {
 
   attributes: {
     id: {
-      columnName: 'DEPTNO',
+      columnName: 'DEPARTMENT_ID',
       type: 'integer',
       autoIncrement: true,
       primaryKey: true,
       unique: true
     },
     name: {
-      columnName: 'DNAME',
+      columnName: 'DEPARTMENT_NAME',
       type: 'string',
       required: true
     },
-    location: {
-      columnName: 'LOC',
+    managerId: {
+      columnName: 'MANAGER_ID',
+      type: 'string',
+      required: true
+    },
+    locationId: {
+      columnName: 'LOCATION_ID',
       type: 'string',
       required: true
     }
