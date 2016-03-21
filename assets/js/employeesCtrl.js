@@ -6,14 +6,14 @@ angular.module('exampleApp').controller('employeesCtrl', ['$scope', '$sailsBind'
     $sailsBind.bind('api/department', $scope);
 
     $scope.showDepartment = function(employee) {
-      return _.result(_.find($scope.departments, { id: employee.department }), 'name');
+      return _.result(_.find($scope.departments, { id: employee.departmentId }), 'name');
     };
 
     $scope.updateDepartment = function(employee, data) {
       var d = $q.defer();
 
       $http.put('api/employee/' + employee.id, {
-        department: data
+        departmentId: data
       })
       .success(function(response) {
         d.resolve(false);

@@ -14,47 +14,61 @@ module.exports = {
 
   attributes: {
     id: {
-      columnName: 'EMPNO',
+      columnName: 'EMPLOYEE_ID',
       type: 'integer',
       autoIncrement: true,
       primaryKey: true,
       unique: true
     },
-    name: {
-      columnName: 'ENAME',
+    firstName: {
+      columnName: 'FIRST_NAME',
       type: 'string',
       required: false
     },
-    job: {
-      columnName: 'JOB',
+    lastName: {
+      columnName: 'LAST_NAME',
+      type: 'string',
+      required: false
+    },
+    email: {
+      columnName: 'EMAIL',
       type: 'string',
       required: true
+    },
+    phoneNumber: {
+      columnName: 'PHONE_NUMBER',
+      type: 'string',
+      required: false
     },
     hireDate: {
-      columnName: 'HIREDATE',
+      columnName: 'HIRE_DATE',
       type: 'string',
       required: true
     },
-    department: {
-      columnName: 'DEPTNO',
-      type: 'integer',
+    jobId: {
+      columnName: 'JOB_ID',
+      type: 'string',
       required: true
     },
     salary: {
-      columnName: 'SAL',
+      columnName: 'SALARY',
       type: 'float',
       required: false
     },
     commission: {
-      columnName: 'COMM',
+      columnName: 'COMMISSION_PCT',
       type: 'float',
       required: false
     },
     managerId: {
-      columnName: 'MGR',
+      columnName: 'MANAGER_ID',
       type: 'integer',
       required: false
+    },
+    departmentId: {
+      columnName: 'DEPARTMENT_ID',
+      type: 'integer',
+      required: true
     }
   }
 };
-
