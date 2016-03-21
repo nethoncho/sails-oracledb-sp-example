@@ -23,7 +23,7 @@
         <td class="hidden-xs">{{employee.hireDate}}</td>
         <td><a editable-select="employee.departmentId" onbeforesave="updateDepartment(employee, $data)" e-ng-options="d.id as d.name for d in departments">{{ showDepartment(employee) || 'NULL' }}</a></td>
         <td><a editable-number="employee.salary" onbeforesave="updateSalary(employee, $data)">{{employee.salary || 'NULL'}}</a></td>
-        <td>{{employee.commission}}</td>
+        <td>{{employee.commission | number:2}}</td>
         <td>{{employee.managerId}}</td>
       </tr>
     <tbody>
