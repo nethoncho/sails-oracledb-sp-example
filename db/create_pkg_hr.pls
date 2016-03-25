@@ -174,7 +174,7 @@ IS
    --
    PROCEDURE departments_u(
                              p_department_id    IN departments.department_id%TYPE,
-                             p_dname            IN VARCHAR2
+                             p_department_name  IN VARCHAR2
                           );
    --
    -----------------------------------------------------------------------------------

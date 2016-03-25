@@ -231,13 +231,13 @@ IS
    --
    PROCEDURE departments_u(
                               p_department_id   IN departments.department_id%TYPE,
-                              p_dname           IN VARCHAR2
+                              p_department_name  IN VARCHAR2
                           )
    IS
    BEGIN
       hr_child.update_dept_name(
                                     p_department_id,
-                                    p_dname
+                                    p_department_name
                                 );
       --
    END;
