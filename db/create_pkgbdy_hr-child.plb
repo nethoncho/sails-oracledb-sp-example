@@ -148,7 +148,8 @@ IS
    BEGIN
       --
       UPDATE   employees
-      SET      department_id = p_department_id
+      SET      department_id = p_department_id,
+               hire_date     = SYSDATE
       WHERE    employee_id   = p_emp_id;
       --
       COMMIT WORK;
