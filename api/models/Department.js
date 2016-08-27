@@ -33,8 +33,10 @@ module.exports = {
     },
     locationId: {
       columnName: 'LOCATION_ID',
-      type: 'string',
-      required: true
+//      type: 'string',
+//      required: true
+      type: 'integer',
+      required: false
     }
   }
 };

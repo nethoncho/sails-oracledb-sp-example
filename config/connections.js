@@ -23,12 +23,12 @@ module.exports.connections = {
 
   oraclehr: {
     adapter: 'sails-oracle-sp',
-    user: 'scott',
-    password: 'tiger',
+    user: 'hr',
+    password: 'oracle',
     package: 'HR',
     findCustomExceptions: 'RETURN_CODES_R',
     cursorName: 'DETAILS',
-    connectString: 'localhost/XE'
+    connectString: 'localhost/orcl'
   }
 
 };
