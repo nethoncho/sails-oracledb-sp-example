@@ -7,16 +7,14 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Location ID</th>
+        <th>City</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="department in departments" ng-animate="'animate'">
         <td>{{department.id}}</td>
         <td><a editable-text="department.name" onbeforesave="updateName(department, $data)">{{department.name || 'NULL'}}</a></td>
-        <!--<td><a editable-text="department.location" onbeforesave="updateLocation(department, $data)">{{department.locationId || 'NULL'}}</a></td>-->
-        <td>{{department.locationId || 'NULL'}}</td>
-
+        <td>{{getLocationCity(department.locationId)}}</td>
       </tr>
     <tbody>
   </table>

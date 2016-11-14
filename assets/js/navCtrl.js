@@ -21,6 +21,13 @@ angular.module('exampleApp').config(['$stateProvider',
         url: '/departments',
         controller: 'departmentsCtrl',
         templateUrl: 'view/departments.html',
+        resolve: {
+          locations: ['$http', function ($http) {
+            return $http.get('api/location').then(function (data) {
+              return data.data;
+            });
+          }]
+        }
       });
   }
 ]);

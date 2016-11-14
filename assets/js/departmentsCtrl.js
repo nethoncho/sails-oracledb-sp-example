@@ -1,8 +1,13 @@
 'use strict';
 
-angular.module('exampleApp').controller('departmentsCtrl', ['$scope', '$sailsBind', '$q', '$http',
-  function ($scope, $sailsBind, $q, $http) {
+angular.module('exampleApp').controller('departmentsCtrl', ['$scope', '$sailsBind', '$q', '$http', 'locations',
+  function ($scope, $sailsBind, $q, $http, locations) {
+    $scope.locations = locations;
     $sailsBind.bind('api/department', $scope);
+
+    $scope.getLocationCity = function(id) {
+      return _.find($scope.locations, {'id': id}).city;
+    };
 
     $scope.updateName = function(department, data) {
       var d = $q.defer();
