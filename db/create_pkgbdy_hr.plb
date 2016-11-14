@@ -274,6 +274,109 @@ IS
       --
    END;
    --
+   --===========================================================
+   --
+   -- locations
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- create a location
+   --
+   PROCEDURE locations_c(
+                           p_loc_id             IN     NUMBER,
+                           p_street_address     IN     VARCHAR2,
+                           p_postal_code        IN     VARCHAR2,
+                           p_city               IN     VARCHAR2,
+                           p_state_province     IN     VARCHAR2,
+                           p_country_id         IN     NUMBER,
+                           p_details            IN OUT hr_child.loc_details_refcur_t
+                          )
+   IS
+   BEGIN
+     --
+      DECLARE
+         v_cursor sys_refcursor;
+      BEGIN
+         hr_child.create_loc(
+                              p_loc_id          => p_loc_id,
+                              p_street_address  => p_street_address,
+                              p_postal_code     => p_postal_code,
+                              p_city            => p_city,
+                              p_state_province  => p_state_province,
+                              p_country_id      => p_country_id,
+                              p_details         => v_cursor
+                           );
+         p_details := v_cursor;
+      END;
+      --
+   END;
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read all employees details
+   --
+   PROCEDURE locations_r(
+                             p_details  IN OUT  hr_child.loc_details_refcur_t
+                          )
+   IS
+   BEGIN
+      --
+      OPEN p_details FOR
+         SELECT   *
+         FROM     locations;
+   END;
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read details on a specified locations
+   --
+   PROCEDURE locations_r(
+                             p_loc_id    IN      NUMBER,
+                             p_details   IN OUT  hr_child.loc_details_refcur_t
+                          )
+   IS
+   BEGIN
+      --
+      OPEN p_details FOR
+         SELECT   *
+         FROM     locations
+         WHERE    location_id = p_loc_id;
+   END;
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified locations city
+   --
+   PROCEDURE locations_u(
+                             p_loc_id    IN locations.location_id%TYPE,
+                             p_city  IN VARCHAR2
+                          )
+   IS
+   BEGIN
+      hr_child.update_loc_city(
+                                    p_loc_id,
+                                    p_city
+                                );
+      --
+   END;
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- destroy a specified location
+   --
+   PROCEDURE locations_d(
+                             p_loc_id    IN locations.location_id%TYPE
+                           )
+   IS
+   BEGIN
+      hr_child.delete_loc(
+                              p_loc_id
+                          );
+      --
+   END;
+   --
+   --
    --==================================================================
    --
    -- return_codes_r()

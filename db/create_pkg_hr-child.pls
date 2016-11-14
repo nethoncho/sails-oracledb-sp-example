@@ -57,6 +57,7 @@ IS
    --
    TYPE empl_details_refcur_t IS REF CURSOR RETURN employees%ROWTYPE;
    TYPE dept_details_refcur_t IS REF CURSOR RETURN departments%ROWTYPE;
+   TYPE loc_details_refcur_t  IS REF CURSOR RETURN locations%ROWTYPE;
    --
    --===========================================================
    --
@@ -186,6 +187,61 @@ IS
    PROCEDURE delete_dept(
                            p_department_id  IN departments.department_id%TYPE
                         );
+   --
+   --
+   --===========================================================
+   --
+   -- locations
+   --
+   -- CRUD procedures for the locations table
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- create a location
+   --
+   PROCEDURE create_loc(
+                           p_loc_id             IN     NUMBER,
+                           p_street_address     IN     VARCHAR2,
+                           p_postal_code        IN     VARCHAR2,
+                           p_city               IN     VARCHAR2,
+                           p_state_province     IN     VARCHAR2,
+                           p_country_id         IN     NUMBER,
+                           p_details            IN OUT loc_details_refcur_t
+                        );
+   -----------------------------------------------------------------------------------
+   --
+   -- obtain details for all locations
+   --
+   PROCEDURE get_all_loc_details(
+                                   p_details IN OUT  loc_details_refcur_t
+                                );
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- obtain a specific locations's details
+   --
+   PROCEDURE get_location_details(
+                                      p_loc_id    IN      locations.location_id%TYPE,
+                                      p_details   IN OUT  loc_details_refcur_t
+                                   );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specific locations's city
+   --
+   PROCEDURE update_loc_city(
+                                 p_loc_id  IN locations.location_id%TYPE,
+                                 p_sal     IN NUMBER
+                              );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- destroy a specific location
+   --
+   PROCEDURE delete_loc(
+                          p_loc_id  IN locations.location_id%TYPE
+                       );
    --
    --===============================================================
    --

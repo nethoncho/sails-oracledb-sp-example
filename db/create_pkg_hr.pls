@@ -194,6 +194,62 @@ IS
                               p_department_id  IN departments.department_id%TYPE
                           );
    --
+   --
+   --===========================================================
+   --
+   -- locations
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- create a locations
+   --
+   PROCEDURE locations_c(
+                           p_loc_id             IN     NUMBER,
+                           p_street_address     IN     VARCHAR2,
+                           p_postal_code        IN     VARCHAR2,
+                           p_city               IN     VARCHAR2,
+                           p_state_province     IN     VARCHAR2,
+                           p_country_id         IN     NUMBER,
+                           p_details            IN OUT hr_child.loc_details_refcur_t
+                        );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read details on all departments
+   --
+   PROCEDURE locations_r(
+                             p_details  IN OUT  hr_child.loc_details_refcur_t
+                          );
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- Read details on a specified location
+   --
+   PROCEDURE locations_r(
+                             p_loc_id    IN      NUMBER,
+                             p_details   IN OUT  hr_child.loc_details_refcur_t
+                          );
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- update a specified locations's city
+   --
+   PROCEDURE locations_u(
+                             p_loc_id    IN locations.location_id%TYPE,
+                             p_city  IN VARCHAR2
+                          );
+   --
+   --
+   -----------------------------------------------------------------------------------
+   --
+   -- destroy a specified location
+   --
+   PROCEDURE locations_d(
+                             p_loc_id    IN locations.location_id%TYPE
+                          );
+   --
    --===========================================================
    --
    -- return_codes_r()
