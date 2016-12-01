@@ -205,7 +205,7 @@ IS
    -- create a locations
    --
    PROCEDURE locations_c(
-                           p_loc_id             IN     NUMBER,
+                           p_location_id        IN     NUMBER,
                            p_street_address     IN     VARCHAR2,
                            p_postal_code        IN     VARCHAR2,
                            p_city               IN     VARCHAR2,
@@ -228,8 +228,8 @@ IS
    -- Read details on a specified location
    --
    PROCEDURE locations_r(
-                             p_loc_id    IN      NUMBER,
-                             p_details   IN OUT  hr_child.loc_details_refcur_t
+                             p_location_id   IN      NUMBER,
+                             p_details       IN OUT  hr_child.loc_details_refcur_t
                           );
    --
    -----------------------------------------------------------------------------------
@@ -237,8 +237,8 @@ IS
    -- update a specified locations's city
    --
    PROCEDURE locations_u(
-                             p_loc_id    IN locations.location_id%TYPE,
-                             p_city  IN VARCHAR2
+                             p_location_id    IN locations.location_id%TYPE,
+                             p_city          IN VARCHAR2
                           );
    --
    --
@@ -247,7 +247,7 @@ IS
    -- destroy a specified location
    --
    PROCEDURE locations_d(
-                             p_loc_id    IN locations.location_id%TYPE
+                             p_location_id    IN locations.location_id%TYPE
                           );
    --
    --===========================================================

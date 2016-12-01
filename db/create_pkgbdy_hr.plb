@@ -283,7 +283,7 @@ IS
    -- create a location
    --
    PROCEDURE locations_c(
-                           p_loc_id             IN     NUMBER,
+                           p_location_id        IN     NUMBER,
                            p_street_address     IN     VARCHAR2,
                            p_postal_code        IN     VARCHAR2,
                            p_city               IN     VARCHAR2,
@@ -298,7 +298,7 @@ IS
          v_cursor sys_refcursor;
       BEGIN
          hr_child.create_loc(
-                              p_loc_id          => p_loc_id,
+                              p_loc_id          => p_location_id,
                               p_street_address  => p_street_address,
                               p_postal_code     => p_postal_code,
                               p_city            => p_city,
@@ -332,8 +332,8 @@ IS
    -- Read details on a specified locations
    --
    PROCEDURE locations_r(
-                             p_loc_id    IN      NUMBER,
-                             p_details   IN OUT  hr_child.loc_details_refcur_t
+                             p_location_id   IN      NUMBER,
+                             p_details       IN OUT  hr_child.loc_details_refcur_t
                           )
    IS
    BEGIN
@@ -341,7 +341,7 @@ IS
       OPEN p_details FOR
          SELECT   *
          FROM     locations
-         WHERE    location_id = p_loc_id;
+         WHERE    location_id = p_location_id;
    END;
    --
    -----------------------------------------------------------------------------------
@@ -349,13 +349,13 @@ IS
    -- update a specified locations city
    --
    PROCEDURE locations_u(
-                             p_loc_id    IN locations.location_id%TYPE,
-                             p_city  IN VARCHAR2
+                             p_location_id   IN locations.location_id%TYPE,
+                             p_city          IN VARCHAR2
                           )
    IS
    BEGIN
       hr_child.update_loc_city(
-                                    p_loc_id,
+                                    p_location_id,
                                     p_city
                                 );
       --
@@ -366,12 +366,12 @@ IS
    -- destroy a specified location
    --
    PROCEDURE locations_d(
-                             p_loc_id    IN locations.location_id%TYPE
+                             p_location_id    IN locations.location_id%TYPE
                            )
    IS
    BEGIN
       hr_child.delete_loc(
-                              p_loc_id
+                              p_location_id
                           );
       --
    END;
