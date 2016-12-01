@@ -42,6 +42,9 @@ module.exports.routes = {
   'PUT    /api/department/:id':  'Department.update',
   'DELETE /api/department/:id':  'Department.destroy',
   'GET    /api/location/:id?': 'Location.find',
+  'POST   /api/location':      'Location.create',
+  'PUT    /api/location/:id':  'Location.update',
+  'DELETE /api/location/:id':  'Location.destroy',
   '/': { view: 'app' }
 
   /***************************************************************************
