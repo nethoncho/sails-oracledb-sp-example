@@ -260,7 +260,7 @@ IS
    --
    --==========================================================
    --
-   -- reset database back to devault data (housekeeping)
+   -- reset database back to default data (housekeeping)
    --
    PROCEDURE housekeeping_d;
    --

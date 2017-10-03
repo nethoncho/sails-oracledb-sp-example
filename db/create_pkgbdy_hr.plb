@@ -428,3 +428,47 @@ END;
 /
 
 
+--======================================================
+--
+-- The Oracle-provided schema includes a trigger that invokes
+-- the add_job_history procedure when an employee changes departments.
+--
+-- A unique constraint prevents the employee from being a
+-- member of multiple departments in the same day.
+--
+-- The example's UI enables the user to change the user's department.
+-- Changing a given user's department more than once per day raises an
+-- dup_val_on_index exception. The following code modifies the legacy
+-- add_job_history procedure by adding an exception handler that
+-- transforms dup_val_on_index exception into a daily_dept_change exception,
+-- which causes the system to present a meaningful error message when
+-- the user changes the employee's department for the second time during
+-- a given day.
+--
+-- In real life this exception handler would be added to the
+-- leagcy add_job_history procedure. For the purposes of this
+-- toy example I am changing the add_job_history procedure here
+-- so as to avoid modifying Oracle's legacy code.
+--
+
+
+CREATE OR REPLACE PROCEDURE add_job_history
+  (  p_emp_id          job_history.employee_id%type
+   , p_start_date      job_history.start_date%type
+   , p_end_date        job_history.end_date%type
+   , p_job_id          job_history.job_id%type
+   , p_department_id   job_history.department_id%type
+   )
+IS
+BEGIN
+  INSERT INTO job_history (employee_id, start_date, end_date,
+                           job_id, department_id)
+    VALUES(p_emp_id, p_start_date, p_end_date, p_job_id, p_department_id);
+EXCEPTION
+   WHEN dup_val_on_index
+   THEN
+      RAISE  hr_child.daily_dept_change;
+END add_job_history;
+/
+
+

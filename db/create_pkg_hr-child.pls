@@ -31,11 +31,15 @@ IS
    text_too_long                 EXCEPTION;
    PRAGMA EXCEPTION_INIT(  text_too_long, -20012 );
    --
-   ec_martians_landed              CONSTANT NUMBER          := 20013;
-   martians_landed                 EXCEPTION;
-   PRAGMA EXCEPTION_INIT(  martians_landed, -20013 );
+   ec_daily_dept_change              CONSTANT NUMBER          := 20013;
+   daily_dept_change                 EXCEPTION;
+   PRAGMA EXCEPTION_INIT(  daily_dept_change, -20013 );
    --
-   ec_undefined_failure            CONSTANT NUMBER := 20014;
+   ec_martians_landed              CONSTANT NUMBER          := 20014;
+   martians_landed                 EXCEPTION;
+   PRAGMA EXCEPTION_INIT(  martians_landed, -20014 );
+   --
+   ec_undefined_failure            CONSTANT NUMBER := 20015;
    --
    ---------------------------------------------------
    --
